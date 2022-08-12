@@ -10,3 +10,5 @@ cmsis_project_stm32f407vet6\cmsis_my.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
 cmsis_project_stm32f407vet6\cmsis_my.o: ../Drivers/CMSIS/Include/mpu_armv7.h
 cmsis_project_stm32f407vet6\cmsis_my.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h
 cmsis_project_stm32f407vet6\cmsis_my.o: ../Drivers/CMSIS/Include/core_cm4.h
+cmsis_project_stm32f407vet6\cmsis_my.o: .\ILI9341\lcd_ili9341.h
+cmsis_project_stm32f407vet6\cmsis_my.o: ../Core/Inc/main.h

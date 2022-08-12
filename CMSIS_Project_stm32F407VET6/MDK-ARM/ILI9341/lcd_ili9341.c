@@ -14,23 +14,23 @@ void initLCD()
 {
 //    // ?????????? Reset ???????
 //    GPIO_ResetBits(GPIOE, GPIO_Pin_1);
-//    HAL_Delay(0x0FFFFF);
+//    Delay(0x0FFFFF);
 //    GPIO_SetBits(GPIOE, GPIO_Pin_1);
 //    delay(0x0FFFFF);
  
     writeLCDCommand(0x0000,0x0001);
-    HAL_Delay(10);
+    Delay(10);
     writeLCDCommand(0x0015,0x0030);
     writeLCDCommand(0x0011,0x0040);
     writeLCDCommand(0x0010,0x1628);
     writeLCDCommand(0x0012,0x0000);
     writeLCDCommand(0x0013,0x104d);
-    HAL_Delay(10);
+    Delay(10);
     writeLCDCommand(0x0012,0x0010);
-    HAL_Delay(10);
+    Delay(10);
     writeLCDCommand(0x0010,0x2620);
     writeLCDCommand(0x0013,0x344d);
-    HAL_Delay(10);
+    Delay(10);
     writeLCDCommand(0x0001,0x0100);
     writeLCDCommand(0x0002,0x0300);
     writeLCDCommand(0x0003,0x1030);
@@ -43,8 +43,7 @@ void initLCD()
     writeLCDCommand(0x0090,0x0182);
     writeLCDCommand(0x0093,0x0001);
     writeLCDCommand(0x00a3,0x0010);
-    HAL_Delay(10);
-    // ????????? ?????
+    Delay(10);
     writeLCDCommand(0x30,0x0000);
     writeLCDCommand(0x31,0x0502);
     writeLCDCommand(0x32,0x0307);
@@ -55,13 +54,13 @@ void initLCD()
     writeLCDCommand(0x37,0x0503);
     writeLCDCommand(0x38,0x1505);
     writeLCDCommand(0x39,0x1505);
-    HAL_Delay(10);
+    Delay(10);
     writeLCDCommand(0x0007,0x0001);
-    HAL_Delay(10);
+    Delay(10);
     writeLCDCommand(0x0007,0x0021);
     writeLCDCommand(0x0007,0x0023);
-    HAL_Delay(10);
+    Delay(10);
     writeLCDCommand(0x0007,0x0033);
-    HAL_Delay(10);
+    Delay(10);
     writeLCDCommand(0x0007,0x0133);
 }

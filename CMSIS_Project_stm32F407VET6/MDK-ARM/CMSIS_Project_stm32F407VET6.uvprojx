@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F407xx BUFF_SIZE=512</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;.\ILI9341</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -421,6 +421,76 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>LCD</GroupName>
+          <Files>
+            <File>
+              <FileName>colors.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ILI9341\colors.h</FilePath>
+            </File>
+            <File>
+              <FileName>font8.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ILI9341\font8.c</FilePath>
+            </File>
+            <File>
+              <FileName>font12.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ILI9341\font12.c</FilePath>
+            </File>
+            <File>
+              <FileName>font16.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ILI9341\font16.c</FilePath>
+            </File>
+            <File>
+              <FileName>font20.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ILI9341\font20.c</FilePath>
+            </File>
+            <File>
+              <FileName>font24.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ILI9341\font24.c</FilePath>
+            </File>
+            <File>
+              <FileName>fonts.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ILI9341\fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>ili9341.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ILI9341\ili9341.c</FilePath>
+            </File>
+            <File>
+              <FileName>ili9341.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ILI9341\ili9341.h</FilePath>
+            </File>
+            <File>
+              <FileName>image.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ILI9341\image.h</FilePath>
+            </File>
+            <File>
+              <FileName>lcd_ili9341.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ILI9341\lcd_ili9341.c</FilePath>
+            </File>
+            <File>
+              <FileName>lcd_ili9341.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ILI9341\lcd_ili9341.h</FilePath>
+            </File>
+            <File>
+              <FileName>registers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ILI9341\registers.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>
@@ -439,5 +509,14 @@
     </components>
     <files/>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>CMSIS_Project_stm32F407VET6</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>
