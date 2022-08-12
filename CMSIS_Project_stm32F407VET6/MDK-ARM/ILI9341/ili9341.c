@@ -392,7 +392,7 @@ void lcdDrawLine(int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint16_t color)
 void lcdPlot(uint16_t *buf_x, uint16_t *buf_y, uint16_t size, uint16_t color)
 {
 	uint16_t count_plot = 0;
-	uint16_t del_x = 0;
+//	uint16_t del_x = 0;
 	uint16_t del_y = 0;	
 	uint16_t max = 0;
 	

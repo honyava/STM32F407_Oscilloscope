@@ -12,12 +12,6 @@ void writeLCDData(unsigned int data)
 
 void initLCD()
 {
-//    // ?????????? Reset ???????
-//    GPIO_ResetBits(GPIOE, GPIO_Pin_1);
-//    Delay(0x0FFFFF);
-//    GPIO_SetBits(GPIOE, GPIO_Pin_1);
-//    delay(0x0FFFFF);
- 
     writeLCDCommand(0x0000,0x0001);
     Delay(10);
     writeLCDCommand(0x0015,0x0030);

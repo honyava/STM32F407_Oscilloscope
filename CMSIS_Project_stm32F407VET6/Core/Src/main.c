@@ -24,6 +24,7 @@ int main(void)
 	SysTick_Init();
 	GPIOA6_Init();
 	GPIOA7_Init();
+  GPIOB1_Init();
 	TIM3_Init();
 	TIM2_Init();
 	Button_K1_Init();
@@ -31,6 +32,7 @@ int main(void)
 	ADC3_Init();
 	ADC1_2_Dual_Init();
   FSMC_Init();
+  initLCD();
 	//ADC1_Init();
 
 	while(1)
