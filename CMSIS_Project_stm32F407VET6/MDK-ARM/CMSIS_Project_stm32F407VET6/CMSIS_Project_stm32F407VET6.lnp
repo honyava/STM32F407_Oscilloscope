@@ -1,0 +1,10 @@
+--cpu=Cortex-M4.fp.sp
+"cmsis_project_stm32f407vet6\startup_stm32f407xx.o"
+"cmsis_project_stm32f407vet6\main.o"
+"cmsis_project_stm32f407vet6\cmsis_my.o"
+"cmsis_project_stm32f407vet6\interrupt.o"
+"cmsis_project_stm32f407vet6\system_stm32f4xx.o"
+--strict --scatter "CMSIS_Project_stm32F407VET6\CMSIS_Project_stm32F407VET6.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "CMSIS_Project_stm32F407VET6.map" -o CMSIS_Project_stm32F407VET6\CMSIS_Project_stm32F407VET6.axf
