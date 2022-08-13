@@ -27,11 +27,20 @@ Project File Date:  08/12/2022
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'CMSIS_Project_stm32F407VET6'
-compiling main.c...
+compiling CMSIS_My.c...
+CMSIS_My.c(261): warning:  #61-D: integer operation result is out of range
+    |(3 << GPIO_OSPEEDR_OSPEED14_Pos)|(3 << GPIO_OSPEEDR_OSPEED15_Pos);
+CMSIS_My.c(264): warning:  #61-D: integer operation result is out of range
+    |(2 << GPIO_MODER_MODE15_Pos); //AF mode
+CMSIS_My.c(271): warning:  #61-D: integer operation result is out of range
+    |(3 << GPIO_OSPEEDR_OSPEED11_Pos)|(3 << GPIO_OSPEEDR_OSPEED12_Pos)|(3 << GPIO_OSPEEDR_OSPEED13_Pos)|(3 << GPIO_OSPEEDR_OSPEED14_Pos)|(3 << GPIO_OSPEEDR_OSPEED15_Pos);
+CMSIS_My.c(273): warning:  #61-D: integer operation result is out of range
+    |(2 << GPIO_MODER_MODE12_Pos)|(2 << GPIO_MODER_MODE13_Pos)|(2 << GPIO_MODER_MODE14_Pos)|(2 << GPIO_MODER_MODE15_Pos);
+CMSIS_My.c: 4 warnings, 0 errors
 linking...
-Program Size: Code=3306 RO-data=1566 RW-data=68 ZI-data=2980  
+Program Size: Code=3582 RO-data=1566 RW-data=68 ZI-data=2980  
 FromELF: creating hex file...
-"CMSIS_Project_stm32F407VET6\CMSIS_Project_stm32F407VET6.axf" - 0 Error(s), 0 Warning(s).
+"CMSIS_Project_stm32F407VET6\CMSIS_Project_stm32F407VET6.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -55,7 +64,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE:5.6.0
       Include file:  CMSIS\Core\Include\tz_context.h
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

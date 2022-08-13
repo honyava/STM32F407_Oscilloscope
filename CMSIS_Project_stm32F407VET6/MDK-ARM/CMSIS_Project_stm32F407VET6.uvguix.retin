@@ -3643,9 +3643,9 @@
       <ActiveTab>2</ActiveTab>
       <Doc>
         <Name>.\CMSIS_My.c</Name>
-        <ColumnNumber>0</ColumnNumber>
-        <TopLine>34</TopLine>
-        <CurrentLine>44</CurrentLine>
+        <ColumnNumber>55</ColumnNumber>
+        <TopLine>1</TopLine>
+        <CurrentLine>153</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
@@ -3661,9 +3661,9 @@
       </Doc>
       <Doc>
         <Name>../Core/Src/main.c</Name>
-        <ColumnNumber>4</ColumnNumber>
+        <ColumnNumber>10</ColumnNumber>
         <TopLine>19</TopLine>
-        <CurrentLine>42</CurrentLine>
+        <CurrentLine>23</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>

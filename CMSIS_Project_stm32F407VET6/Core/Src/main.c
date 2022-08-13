@@ -39,7 +39,7 @@ int main(void)
 	ADC3_Init();
 	ADC1_2_Dual_Init();
   
-  //lcdTest();
+  lcdTest();
 	//ADC1_Init();
 
 	while(1)

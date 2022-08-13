@@ -36,7 +36,6 @@ void Sys_Clock_168MHz(void)
 	RCC->PLLCFGR &= ~(1 << RCC_PLLCFGR_PLLP_Pos); // division 2	
 	SET_BIT(RCC->PLLCFGR, RCC_PLLCFGR_PLLSRC);
   SET_BIT(RCC->AHB1ENR, RCC_AHB1ENR_GPIOHEN); // Clock for GPIOH (Crystall Resonator)
-  RCC->CR = 0x03037683;
 	RCC->CR |= (1 << RCC_CR_PLLON_Pos); // Start PLL
 	while(READ_BIT(RCC->CR, RCC_CR_PLLRDY) == RESET);
 }
@@ -152,7 +151,6 @@ void ADC1_Init(void) // for Temperature
 	CLEAR_BIT(DMA2_Stream0->CR, DMA_SxCR_CHSEL); // enable channel 0
 	DMA2_Stream0->NDTR |= (50 << DMA_SxNDT_Pos);
 	SET_BIT(DMA2_Stream0->CR, DMA_SxCR_EN); // Enable DMA
-	
 	//NVIC_EnableIRQ(ADC_IRQn);
 }
   
@@ -217,7 +215,6 @@ void ADC3_Init(void) // for Temperature
 	CLEAR_BIT(ADC3->CR1, ADC_CR1_RES_0);
 	CLEAR_BIT(ADC3->CR1, ADC_CR1_RES_1); // Resolution 12 bit
 	SET_BIT(ADC3->CR2, ADC_CR2_ADON); // A/D Converter ON 
-	//SET_BIT(ADC->CCR, ADC_CCR_TSVREFE); // Choose temperatute sensor
 	ADC1->SQR3 = 1; // 1 channel for first conversation
 	CLEAR_BIT(ADC3->CR2, ADC_CR2_ALIGN); // Right alignment
 	MODIFY_REG(ADC3->CR2, ADC_CR2_EXTSEL, 6 << ADC_CR2_EXTSEL_Pos); // Externel event Timer 2 TRGO
@@ -251,7 +248,6 @@ void DMA_Init(void)
 	NVIC_EnableIRQ(DMA2_Stream1_IRQn); // Enable interrupt for ADC3
 }
 
-
 void FSMC_Init(void)
 {
   SET_BIT(RCC->AHB1ENR, RCC_AHB1ENR_GPIODEN);
@@ -259,8 +255,8 @@ void FSMC_Init(void)
   SET_BIT(RCC->AHB1ENR, RCC_AHB1ENR_GPIOEEN);
   SET_BIT(RCC->AHB3ENR,RCC_AHB3ENR_FSMCEN); // Enable clock for FSMC
 //  GPIOB->OSPEEDR |= (0x10 << GPIO_OSPEEDR_OSPEED1_Pos); // High speed
-//	GPIOB->MODER |= (0x01 << GPIO_MODER_MODE1_Pos); //Output PB1, Push-Pull  
-  //GPIOD->OSPEEDR |= (3 << GPIO_OSPEEDR_OSPEED1_Pos)|(3 << GPIO_OSPEEDR_OSPEED0_Pos)|(3 << GPIO_OSPEEDR_OSPEED4_Pos)|(3 << GPIO_OSPEEDR_OSPEED5_Pos)\
+	GPIOB->MODER |= (0x01 << GPIO_MODER_MODE1_Pos); //Output PB1, Push-Pull  
+  GPIOD->OSPEEDR |= (3 << GPIO_OSPEEDR_OSPEED1_Pos)|(3 << GPIO_OSPEEDR_OSPEED0_Pos)|(3 << GPIO_OSPEEDR_OSPEED4_Pos)|(3 << GPIO_OSPEEDR_OSPEED5_Pos)\
   |(3 << GPIO_OSPEEDR_OSPEED7_Pos)|(3 << GPIO_OSPEEDR_OSPEED8_Pos)|(3 << GPIO_OSPEEDR_OSPEED9_Pos)|(3 << GPIO_OSPEEDR_OSPEED10_Pos)|(3 << GPIO_OSPEEDR_OSPEED13_Pos)\
   |(3 << GPIO_OSPEEDR_OSPEED14_Pos)|(3 << GPIO_OSPEEDR_OSPEED15_Pos);
   GPIOD->MODER |= (2 << GPIO_MODER_MODE1_Pos)|(2 << GPIO_MODER_MODE0_Pos)|(2 << GPIO_MODER_MODE4_Pos)|(2 << GPIO_MODER_MODE5_Pos)|(2 << GPIO_MODER_MODE7_Pos)\
@@ -269,43 +265,44 @@ void FSMC_Init(void)
   GPIOD->AFR[0] = 0xC0CC00CC;
   GPIOD->AFR[1] = 0xCCC00CCC;
   GPIOE->AFR[0] = 0xC0000000;
-  GPIOE->AFR[1] = 0xCCCCCCCC;
+  GPIOE->AFR[1] = 0xCCCCCCCC;  // Set Alternative functions
   
-  //GPIOE->OSPEEDR |= (3 << GPIO_OSPEEDR_OSPEED7_Pos)|(3 << GPIO_OSPEEDR_OSPEED8_Pos)|(3 << GPIO_OSPEEDR_OSPEED9_Pos)|(3 << GPIO_OSPEEDR_OSPEED10_Pos)\
+  GPIOE->OSPEEDR |= (3 << GPIO_OSPEEDR_OSPEED7_Pos)|(3 << GPIO_OSPEEDR_OSPEED8_Pos)|(3 << GPIO_OSPEEDR_OSPEED9_Pos)|(3 << GPIO_OSPEEDR_OSPEED10_Pos)\
   |(3 << GPIO_OSPEEDR_OSPEED11_Pos)|(3 << GPIO_OSPEEDR_OSPEED12_Pos)|(3 << GPIO_OSPEEDR_OSPEED13_Pos)|(3 << GPIO_OSPEEDR_OSPEED14_Pos)|(3 << GPIO_OSPEEDR_OSPEED15_Pos);
   GPIOE->MODER |= (2 << GPIO_MODER_MODE7_Pos)|(2 << GPIO_MODER_MODE8_Pos)|(2 << GPIO_MODER_MODE9_Pos)|(2 << GPIO_MODER_MODE10_Pos)|(2 << GPIO_MODER_MODE11_Pos)\
   |(2 << GPIO_MODER_MODE12_Pos)|(2 << GPIO_MODER_MODE13_Pos)|(2 << GPIO_MODER_MODE14_Pos)|(2 << GPIO_MODER_MODE15_Pos);
   
-      FSMC_Bank1E->BWTR[FSMC_Bank1_NORSRAM1] = 0x0FFFFFFF;
+  FSMC_Bank1E->BWTR[FSMC_Bank1_NORSRAM1] = 0x0FFFFFFF;
  
-                                                                                 
-    FSMC_Bank1->BTCR[FSMC_Bank1_NORSRAM1] = 
-			     		0 << FSMC_BCR1_CBURSTRW_Pos  |       // write 0 - async 1 - sycnc
-                                        0 << FSMC_BCR1_ASYNCWAIT_Pos |       // Wait signal during asynchronous transfers
-                                        0 << FSMC_BCR1_EXTMOD_Pos    |       // Extended mode enable. Use BWTR register or no
-                                        0 << FSMC_BCR1_WAITEN_Pos    |       // Wait enable bit.
+  FSMC_Bank1->BTCR[FSMC_Bank1_NORSRAM1] &=~                                  // SET ZERO
+                                       (1 << FSMC_BCR1_CBURSTRW_Pos  |       // write 0 - async 1 - sycnc
+                                        1 << FSMC_BCR1_ASYNCWAIT_Pos |       // Wait signal during asynchronous transfers
+                                        1 << FSMC_BCR1_EXTMOD_Pos    |       // Extended mode enable. Use BWTR register or no
+                                        1 << FSMC_BCR1_WAITEN_Pos    |       // Wait enable bit.                     
+                                        1 << FSMC_BCR1_WAITCFG_Pos   |       // Wait timing configuration. 0: NWAIT signal is active one data cycle before wait state 1: NWAIT signal is active during wait state
+                                        1 << FSMC_BCR1_WRAPMOD_Pos   |       // Wrapped burst mode support
+                                        1 << FSMC_BCR1_WAITPOL_Pos   |       // Wait signal polarity bit. 0: NWAIT active low. 1: NWAIT active high
+                                        1 << FSMC_BCR1_BURSTEN_Pos   |       // Burst enable bit                             
+                                        1 << FSMC_BCR1_MUXEN_Pos    );       // Multiplexing Address/Data                                        
+  FSMC_Bank1->BTCR[FSMC_Bank1_NORSRAM1] |=                                   // NOT SET ZERO
                                         1 << FSMC_BCR1_WREN_Pos      |       // Write enable bit
-                                        0 << FSMC_BCR1_WAITCFG_Pos   |       // Wait timing configuration. 0: NWAIT signal is active one data cycle before wait state 1: NWAIT signal is active during wait state
-                                        0 << FSMC_BCR1_WRAPMOD_Pos   |       // Wrapped burst mode support
-                                        0 << FSMC_BCR1_WAITPOL_Pos   |       // Wait signal polarity bit. 0: NWAIT active low. 1: NWAIT active high
-                                        0 << FSMC_BCR1_BURSTEN_Pos   |       // Burst enable bit
                                         1 << FSMC_BCR1_FACCEN_Pos    |       // Flash access enable
                                         1 << FSMC_BCR1_MWID_Pos      |       // 0 = 8b 1 = 16b
                                         2 << FSMC_BCR1_MTYP_Pos      |       // 0 = SRAM 1 = CRAM 2 = NOR
-                                        0 << FSMC_BCR1_MUXEN_Pos     |       // Multiplexing Address/Data
                                         1 << FSMC_BCR1_MBKEN_Pos;            // Memory bank enable bit
+                                        
+                                        
+                                        
  
- 
- 
-    FSMC_Bank1->BTCR[FSMC_Bank1_NORSRAM1 + 1] = 
+  FSMC_Bank1->BTCR[FSMC_Bank1_NORSRAM1 + 1] =                            // NOT SET ZERO
                                         15 << FSMC_BTR1_ADDSET_Pos  |    // Address setup phase duration 0..F * HCLK
                                         15 << FSMC_BTR1_ADDHLD_Pos  |    // Address-hold phase duration 1..F * 2 * HCLK
-                                        255 << FSMC_BTR1_DATAST_Pos  |    // Data-phase duration 1..FF * 2 * HCLK
+                                        255 << FSMC_BTR1_DATAST_Pos |    // Data-phase duration 1..FF * 2 * HCLK
                                         15 << FSMC_BTR1_BUSTURN_Pos |    // Bus turnaround phase duration 0...F
                                         15 << FSMC_BTR1_CLKDIV_Pos  |    // for FSMC_CLK signal 1 = HCLK/2, 2 = HCLK/3 ...  F= HCLK/16
-                                        15 << FSMC_BTR1_DATLAT_Pos  |    // Data latency for synchronous NOR Flash memory 0(2CK)...F(17CK)
-                                        0 << FSMC_BTR1_ACCMOD_Pos;      // Access mode 0 = A, 1 = B, 2 = C, 3 = D Use w/EXTMOD bit
-  
+                                        15 << FSMC_BTR1_DATLAT_Pos;      // Data latency for synchronous NOR Flash memory 0(2CK)...F(17CK)
+  FSMC_Bank1->BTCR[FSMC_Bank1_NORSRAM1 + 1] &=~                         // SET ZERO              
+                                        (1 << FSMC_BTR1_ACCMOD_Pos);     // Access mode 0 = A, 1 = B, 2 = C, 3 = D Use w/EXTMOD bit
 }
 
 	
