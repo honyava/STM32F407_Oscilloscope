@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <stdio.h>
-#include "ili9341.h"
+
 
 #define side_x  35U //for square side
 #define side_y  25U

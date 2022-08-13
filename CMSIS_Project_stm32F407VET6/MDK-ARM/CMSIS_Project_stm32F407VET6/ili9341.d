@@ -13,6 +13,7 @@ cmsis_project_stm32f407vet6\ili9341.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Incl
 cmsis_project_stm32f407vet6\ili9341.o: ../Drivers/CMSIS/Include/core_cm4.h
 cmsis_project_stm32f407vet6\ili9341.o: .\ILI9341\lcd_ili9341.h
 cmsis_project_stm32f407vet6\ili9341.o: ../Core/Inc/main.h
+cmsis_project_stm32f407vet6\ili9341.o: .\ILI9341\ili9341.h
 cmsis_project_stm32f407vet6\ili9341.o: ILI9341\colors.h
 cmsis_project_stm32f407vet6\ili9341.o: ILI9341\registers.h
 cmsis_project_stm32f407vet6\ili9341.o: ILI9341\fonts.h

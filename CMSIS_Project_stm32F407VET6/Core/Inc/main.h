@@ -8,6 +8,7 @@ extern "C" {
 #include "stm32f4xx.h"
 #include "core_cm4.h"
 #include "lcd_ili9341.h"
+#include "ili9341.h"
 
 void Sys_Clock_168MHz(void);
 void SysTick_Handler(void);

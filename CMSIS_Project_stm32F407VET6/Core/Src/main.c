@@ -31,8 +31,14 @@ int main(void)
 	DMA_Init();
 	ADC3_Init();
 	ADC1_2_Dual_Init();
+  
+  lcdBacklightOn();
   FSMC_Init();
   initLCD();
+  lcdSetOrientation(LCD_ORIENTATION_LANDSCAPE);
+  lcdFillRGB(COLOR_WHITE);
+  lcdFillCircle(200,120,10,COLOR_RED);
+  //lcdTest();
 	//ADC1_Init();
 
 	while(1)
