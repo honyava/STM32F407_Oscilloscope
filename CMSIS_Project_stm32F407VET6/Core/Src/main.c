@@ -24,21 +24,20 @@ int main(void)
 	SysTick_Init();
 	GPIOA6_Init();
 	GPIOA7_Init();
-  //GPIOB1_Init();
-  
+  GPIOB1_Init();
   lcdBacklightOn();
   FSMC_Init();
-  initLCD();
+  lcdInit();
   lcdSetOrientation(LCD_ORIENTATION_LANDSCAPE);
-  lcdFillRGB(COLOR_RED);
-  lcdFillCircle(30,30,10,COLOR_WHITE);
+  lcdFillRGB(COLOR_WHITE);
+  //lcdFillCircle(30,30,10,COLOR_WHITE);
   
-//	TIM3_Init();
-//	TIM2_Init();
-//	Button_K1_Init();
-//	DMA_Init();
-//	ADC3_Init();
-//	ADC1_2_Dual_Init();
+	TIM3_Init();
+	TIM2_Init();
+	Button_K1_Init();
+	DMA_Init();
+	ADC3_Init();
+	ADC1_2_Dual_Init();
   
   //lcdTest();
 	//ADC1_Init();
