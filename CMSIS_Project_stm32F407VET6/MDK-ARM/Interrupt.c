@@ -39,7 +39,7 @@ void TIM2_IRQHandler(void)
 		if(flag_tim2 == 0)
 		{
 			GPIOA->BSRR = GPIO_BSRR_BR7;
-			flag_tim2 = 1;
+			flag_tim2 = 1; 
 		}
 		else
 		{
