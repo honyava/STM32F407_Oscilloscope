@@ -28,8 +28,9 @@ int main(void)
   lcdBacklightOn();
   FSMC_Init();
   lcdInit();
-  lcdSetOrientation(LCD_ORIENTATION_LANDSCAPE);
-  lcdFillRGB(COLOR_WHITE);
+  lcdSetOrientation(LCD_ORIENTATION_LANDSCAPE_MIRROR);
+  lcdFillRGB(COLOR_BLACK);
+  lcdGrid(20, 20, COLOR_WHITE);
   //lcdFillCircle(30,30,10,COLOR_WHITE);
   
 	TIM3_Init();
@@ -38,8 +39,13 @@ int main(void)
 	DMA_Init();
 	ADC3_Init();
 	ADC1_2_Dual_Init();
-  
-  lcdTest();
+  float a = 1.2;
+  lcdSetCursor(75, 5);
+  lcdPrintf("%0.2f Hz",a); // frequance
+  lcdSetCursor(215, 5);
+  lcdPrintf("%0.2f V ",a); // Amplitude
+  lcdSetCursor(65, 225);
+  lcdPrintf("%0.2f s ",a); // Time
 	//ADC1_Init();
 
 	while(1)

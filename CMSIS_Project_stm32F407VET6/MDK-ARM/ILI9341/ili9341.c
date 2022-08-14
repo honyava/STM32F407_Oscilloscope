@@ -412,6 +412,7 @@ void lcdPlot(uint16_t *buf_x, uint16_t *buf_y, uint16_t size, uint16_t color)
 		if (count_plot == 274) return;
 		count_plot++;
 	}
+  
 
 }
 
@@ -438,7 +439,16 @@ void lcdGrid(uint16_t x, uint16_t y, uint16_t color)
 			count++;
 		}
 	}
-	
+  // Make arrow for graphic
+  lcdDrawHLine(20, 55, 230, color);
+  lcdDrawVLine(20, 220,233, color);
+	lcdDrawVLine(55, 220,233, color);
+  
+  lcdDrawLine(20, 230, 29, 233, color);
+  lcdDrawLine(20, 230, 29, 227, color);
+
+  lcdDrawLine(55, 230, 46, 233, color);
+  lcdDrawLine(55, 230, 46, 227, color);
 }
 
 
