@@ -337,9 +337,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F407xx BUFF_SIZE=512</Define>
+              <Define>STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;.\ILI9341</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;.\ILI9341;..\MDK-ARM</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -393,6 +393,11 @@
         <Group>
           <GroupName>Application/User/Core</GroupName>
           <Files>
+            <File>
+              <FileName>arm_math.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\arm_math.h</FilePath>
+            </File>
             <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>

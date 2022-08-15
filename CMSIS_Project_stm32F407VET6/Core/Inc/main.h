@@ -10,6 +10,10 @@ extern "C" {
 #include "lcd_ili9341.h"
 #include "ili9341.h"
 
+#define BUFF_SIZE 1024 // 
+#define Convert_to_mV 0.80586f  // 3300mV/4095
+#define Fs 100  // 0...65535    (1MHz/Fs)
+
 void Sys_Clock_168MHz(void);
 void SysTick_Handler(void);
 void Delay(uint32_t ms);

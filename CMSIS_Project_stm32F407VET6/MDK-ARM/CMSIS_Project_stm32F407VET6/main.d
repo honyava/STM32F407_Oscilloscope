@@ -18,3 +18,7 @@ cmsis_project_stm32f407vet6\main.o: .\ILI9341\registers.h
 cmsis_project_stm32f407vet6\main.o: .\ILI9341\fonts.h
 cmsis_project_stm32f407vet6\main.o: .\ILI9341\image.h
 cmsis_project_stm32f407vet6\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+cmsis_project_stm32f407vet6\main.o: ..\MDK-ARM\arm_math.h
+cmsis_project_stm32f407vet6\main.o: ../Drivers/CMSIS/Include/core_cm4.h
+cmsis_project_stm32f407vet6\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+cmsis_project_stm32f407vet6\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

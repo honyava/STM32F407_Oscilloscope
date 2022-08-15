@@ -94,8 +94,8 @@ void TIM2_Init(void)
 	SET_BIT(RCC->APB1ENR, RCC_APB1ENR_TIM2EN); //clock to TIM2 (84 MHz)
 	TIM2->SMCR &= ~ TIM_SMCR_SMS; 
 	CLEAR_REG(TIM2->CR1);
-	TIM2->PSC = 84;
-	TIM2->ARR = 1000; //1000 Hz
+	TIM2->PSC = 84; // 1MHz
+	TIM2->ARR = Fs; //1MHz/Fs
 	TIM2->DIER |= TIM_DIER_UIE; //interrupt on
 	TIM2->CR1 &= ~TIM_CR1_DIR_Msk; // straight count
 	

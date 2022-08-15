@@ -103,7 +103,6 @@ void DMA2_Stream1_IRQHandler(void) // for ADC3
 	if(READ_BIT(DMA2->LISR, DMA_LISR_TCIF1))
 	{
 		DMA2->LIFCR = DMA_LIFCR_CTCIF1;
-		ADC1_data = 0;
 		flag_DMA_ADC3 = 1;
 	}
 }

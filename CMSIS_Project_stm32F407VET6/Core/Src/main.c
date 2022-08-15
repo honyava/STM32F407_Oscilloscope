@@ -1,7 +1,11 @@
 #include "main.h"
 #include <stdint.h>
+#define ARM_MATH_CM4
+#include "arm_math.h"
+#define FFT_SIZE 256
 
-#define Convert_to_mV 0.80586f  // 3300mV/4095
+q15_t fft_Dbuff[BUFF_SIZE*2] = {0};
+
 
 extern volatile uint8_t flag_button;
 extern volatile uint8_t flag_ADC1;
@@ -17,6 +21,13 @@ const float Avg_slope = 2.5f; //mV
 float volatile ADC1_data_conv = 0;
 float volatile Temp_adc = 0;
 uint8_t j = 0;
+
+float T = 1.0/Fs; // Sampling time
+float t_del = 0.0; // time of 1 division
+
+arm_rfft_instance_q15 S;
+uint16_t k;
+uint8_t status;
 
 int main(void)
 {
@@ -45,11 +56,27 @@ int main(void)
   lcdSetCursor(215, 5);
   lcdPrintf("%0.2f V ",a); // Amplitude
   lcdSetCursor(65, 225);
-  lcdPrintf("%0.2f s ",a); // Time
+  t_del = (T*35/280)*1000; // ms
+  lcdPrintf("%0.3f ms ",t_del); // Time
 	//ADC1_Init();
-
+  status = arm_rfft_init_q15(&S, BUFF_SIZE, 0, 1);
+  
 	while(1)
 	{
+    
+    if(flag_DMA_ADC3 == 1)
+    {
+      if(status == ARM_MATH_SUCCESS)
+      {	
+        //arm_rfft_q15(&S,(q15_t*)BUFF_ADC3, fft_Dbuff);//?????????? ???
+        //arm_cmplx_mag_q15(fft_Dbuff, (q15_t*)BUFF_ADC3, FFT_SIZE);//????????? ????????? ????????
+        lcdSetCursor(215, 5);
+        lcdPrintf("%0.2f V ",fft_Dbuff[10]); // Amplitude
+      }
+      
+      flag_DMA_ADC3 = 0;
+    }
+    
 		if(flag_DMA_ADC1_2 == 1)
 		{
       flag_DMA_ADC1_2 = 0;
