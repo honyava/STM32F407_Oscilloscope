@@ -24,7 +24,7 @@ uint8_t j = 0;
 
 float T = 1.0/Fs; // Sampling time
 float t_del = 0.0; // time of 1 division
-float volatile Amplitude = 0;
+uint16_t volatile Amplitude = 0;
 
 arm_rfft_instance_q15 S;
 uint16_t k;
@@ -74,7 +74,7 @@ int main(void)
         arm_cmplx_mag_q15(fft_Dbuff, (q15_t*)BUFF_ADC3, FFT_SIZE); //
         lcdSetCursor(215, 5);
         Amplitude = fft_Dbuff[0]*Convert_to_mV;
-        lcdPrintf("%0.2f mV",Amplitude); // Amplitude
+        lcdPrintf("%d mV", Amplitude); // Amplitude
       }
       
       flag_DMA_ADC3 = 0;
