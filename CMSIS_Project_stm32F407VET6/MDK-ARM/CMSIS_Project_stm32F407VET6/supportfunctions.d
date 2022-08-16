@@ -14,15 +14,5 @@ cmsis_project_stm32f407vet6\supportfunctions.o: C:\Users\retin\AppData\Local\Arm
 cmsis_project_stm32f407vet6\supportfunctions.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Include\dsp/utils.h
 cmsis_project_stm32f407vet6\supportfunctions.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Source\SupportFunctions\arm_bitonic_sort_f32.c
 cmsis_project_stm32f407vet6\supportfunctions.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\PrivateInclude\arm_sorting.h
-cmsis_project_stm32f407vet6\supportfunctions.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Include\arm_math.h
-cmsis_project_stm32f407vet6\supportfunctions.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Include\dsp/basic_math_functions.h
-cmsis_project_stm32f407vet6\supportfunctions.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Include\dsp/interpolation_functions.h
-cmsis_project_stm32f407vet6\supportfunctions.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Include\dsp/bayes_functions.h
-cmsis_project_stm32f407vet6\supportfunctions.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Include\dsp/statistics_functions.h
-cmsis_project_stm32f407vet6\supportfunctions.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Include\dsp/fast_math_functions.h
-cmsis_project_stm32f407vet6\supportfunctions.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Include\dsp/matrix_functions.h
-cmsis_project_stm32f407vet6\supportfunctions.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Include\dsp/complex_math_functions.h
-cmsis_project_stm32f407vet6\supportfunctions.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Include\dsp/controller_functions.h
-cmsis_project_stm32f407vet6\supportfunctions.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Include\dsp/distance_functions.h
-cmsis_project_stm32f407vet6\supportfunctions.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Include\dsp/svm_functions.h
-cmsis_project_stm32f407vet6\supportfunctions.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Include\dsp/svm_defines.h
+cmsis_project_stm32f407vet6\supportfunctions.o: .\fft_lib\arm_math.h
+cmsis_project_stm32f407vet6\supportfunctions.o: .\fft_lib\core_cm4.h

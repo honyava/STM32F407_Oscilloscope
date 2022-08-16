@@ -15,7 +15,6 @@ cmsis_project_stm32f407vet6\commontables.o: C:\Users\retin\AppData\Local\Arm\Pac
 cmsis_project_stm32f407vet6\commontables.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Include\dsp/utils.h
 cmsis_project_stm32f407vet6\commontables.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Include\dsp/basic_math_functions.h
 cmsis_project_stm32f407vet6\commontables.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Source\CommonTables\arm_const_structs.c
-cmsis_project_stm32f407vet6\commontables.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Include\arm_const_structs.h
-cmsis_project_stm32f407vet6\commontables.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Include\dsp/transform_functions.h
-cmsis_project_stm32f407vet6\commontables.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Include\dsp/complex_math_functions.h
-cmsis_project_stm32f407vet6\commontables.o: C:\Users\retin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\DSP\Source\CommonTables\arm_mve_tables.c
+cmsis_project_stm32f407vet6\commontables.o: .\fft_lib\arm_const_structs.h
+cmsis_project_stm32f407vet6\commontables.o: .\fft_lib\arm_math.h
+cmsis_project_stm32f407vet6\commontables.o: .\fft_lib\core_cm4.h

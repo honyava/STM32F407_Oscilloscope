@@ -215,13 +215,13 @@ void ADC3_Init(void) // for Temperature
 	CLEAR_BIT(ADC3->CR1, ADC_CR1_RES_0);
 	CLEAR_BIT(ADC3->CR1, ADC_CR1_RES_1); // Resolution 12 bit
 	SET_BIT(ADC3->CR2, ADC_CR2_ADON); // A/D Converter ON 
-	ADC1->SQR3 = 1; // 1 channel for first conversation
+	ADC3->SQR3 = 1; // PA1 channel for first conversation
 	CLEAR_BIT(ADC3->CR2, ADC_CR2_ALIGN); // Right alignment
 	MODIFY_REG(ADC3->CR2, ADC_CR2_EXTSEL, 6 << ADC_CR2_EXTSEL_Pos); // Externel event Timer 2 TRGO
 	MODIFY_REG(ADC3->CR2, ADC_CR2_EXTEN, 1 << ADC_CR2_EXTEN_Pos); //External TRG enable, Rising edge
 	SET_BIT(ADC3->CR2, ADC_CR2_DMA); // Enable DMA
 	ADC3->CR2 |= ADC_CR2_DDS;  // For enable DMA+ADC(independet)
-	MODIFY_REG(ADC3->SMPR1, ADC_SMPR2_SMP1, 1 << ADC_SMPR2_SMP1_Pos); // Channel 16, 15 cycles for conversation
+	MODIFY_REG(ADC3->SMPR1, ADC_SMPR2_SMP1, 1 << ADC_SMPR2_SMP1_Pos); //  Channel 1, 15 cycles for conversation
 	SET_BIT(ADC3->CR2, ADC_CR2_SWSTART); //  Starts conversion of regular channels
 	// Init DMA
 	DMA2_Stream1->PAR = (uint32_t)&ADC3->DR; // Adress of data

@@ -1,5 +1,6 @@
 --cpu=Cortex-M4.fp.sp
 "cmsis_project_stm32f407vet6\startup_stm32f407xx.o"
+".\fft_lib\arm_cortexM4lf_math.lib"
 "cmsis_project_stm32f407vet6\main.o"
 "cmsis_project_stm32f407vet6\cmsis_my.o"
 "cmsis_project_stm32f407vet6\interrupt.o"
@@ -11,7 +12,7 @@
 "cmsis_project_stm32f407vet6\font24.o"
 "cmsis_project_stm32f407vet6\ili9341.o"
 "cmsis_project_stm32f407vet6\lcd_ili9341.o"
---strict --scatter "CMSIS_Project_stm32F407VET6\CMSIS_Project_stm32F407VET6.sct"
+--library_type=microlib --strict --scatter "CMSIS_Project_stm32F407VET6\CMSIS_Project_stm32F407VET6.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "CMSIS_Project_stm32F407VET6.map" -o CMSIS_Project_stm32F407VET6\CMSIS_Project_stm32F407VET6.axf

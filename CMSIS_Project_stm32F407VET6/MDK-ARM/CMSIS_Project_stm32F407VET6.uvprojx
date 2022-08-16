@@ -189,7 +189,7 @@
             <hadIRAM2>1</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
-            <useUlib>0</useUlib>
+            <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
             <nSecure>0</nSecure>
@@ -337,9 +337,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F407xx</Define>
+              <Define>STM32F407xx, ARM_MATH_CM4</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;.\ILI9341;..\MDK-ARM</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;.\ILI9341;..\MDK-ARM;.\fft_lib</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -388,16 +388,16 @@
               <FileType>2</FileType>
               <FilePath>startup_stm32f407xx.s</FilePath>
             </File>
+            <File>
+              <FileName>arm_cortexM4lf_math.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>.\fft_lib\arm_cortexM4lf_math.lib</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Application/User/Core</GroupName>
           <Files>
-            <File>
-              <FileName>arm_math.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\arm_math.h</FilePath>
-            </File>
             <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
@@ -412,6 +412,21 @@
               <FileName>Interrupt.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Interrupt.c</FilePath>
+            </File>
+            <File>
+              <FileName>arm_math.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\fft_lib\arm_math.h</FilePath>
+            </File>
+            <File>
+              <FileName>core_cm4.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\fft_lib\core_cm4.h</FilePath>
+            </File>
+            <File>
+              <FileName>arm_const_structs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\fft_lib\arm_const_structs.h</FilePath>
             </File>
           </Files>
         </Group>
