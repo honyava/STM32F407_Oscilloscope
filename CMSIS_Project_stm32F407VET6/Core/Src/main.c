@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include "arm_math.h"
 //#include "arm_const_structs.h"
-#define FFT_SIZE 256
+//#define FFT_SIZE 256
 
 q15_t fft_Dbuff[BUFF_SIZE*2] = {0};
 
@@ -30,6 +30,8 @@ uint16_t volatile Amplitude = 0;
 arm_rfft_instance_q15 S;
 uint16_t k;
 uint8_t status;
+uint16_t maxValue_fft = 0;
+uint32_t maxIndex_fft = 0;
 
 int main(void)
 {
@@ -53,11 +55,9 @@ int main(void)
 	DMA_Init();
 	ADC3_Init();
 	ADC1_2_Dual_Init();
-  float a = 1.2;
-  lcdSetCursor(75, 5);
-  lcdPrintf("%0.2f Hz",a); // frequance
-  lcdSetCursor(215, 5);
-  lcdPrintf("%0.2f V ",a); // Amplitude
+  uint32_t frequance = 0;
+  //lcdSetCursor(75, 5);
+  //lcdPrintf("%0.2d Hz",frequance); // frequance
   lcdSetCursor(65, 225);
   t_del = (T*35/280)*1000; // ms
   lcdPrintf("%0.3f ms ",t_del); // Time
@@ -71,12 +71,20 @@ int main(void)
     {
       if(status == ARM_MATH_SUCCESS)
       {
-        //Delay(10);
-        arm_rfft_q15(&S,(q15_t*)BUFF_ADC3, fft_Dbuff); //
-        arm_cmplx_mag_q15(fft_Dbuff, (q15_t*)BUFF_ADC3, FFT_SIZE); //
+        arm_rfft_q15(&S,(q15_t*)BUFF_ADC3, fft_Dbuff); // fft
+        arm_cmplx_mag_q15(fft_Dbuff, (q15_t*)BUFF_ADC3, BUFF_SIZE); //magnitude for fft
+        arm_max_q15(fft_Dbuff, BUFF_SIZE, (q15_t*)&maxValue_fft, &maxIndex_fft); // search max value
+        Amplitude = maxValue_fft*Convert_to_mV; // convert max value in mV
+        frequance = maxIndex_fft*10000/BUFF_SIZE; // Fd/BUFF_SIZE = sample on 1 count
+        //lcdFillRect(0, 0, 320, 15, COLOR_BLACK); // Clear area lcd
         lcdSetCursor(215, 5);
-        Amplitude = fft_Dbuff[0]*Convert_to_mV;
-        lcdPrintf("%d mV", Amplitude); // Amplitude
+        lcdPrintf("%d", Amplitude); // Amplitude
+        lcdSetCursor(245, 5);
+        lcdPrintf("mV");
+        lcdSetCursor(75, 5);
+        lcdPrintf("%d",frequance); // frequance
+        lcdSetCursor(105, 5);
+        lcdPrintf("Hz");
       }
       
       flag_DMA_ADC3 = 0;

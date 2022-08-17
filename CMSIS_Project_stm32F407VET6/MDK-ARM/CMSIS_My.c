@@ -126,7 +126,7 @@ void TIM4_Init(void)
 	TIM4->SMCR &= ~ TIM_SMCR_SMS; 
 	CLEAR_REG(TIM4->CR1);
 	TIM4->PSC = 8400;
-	TIM4->ARR = 5000; //10 Hz
+	TIM4->ARR = 10000; //1 Hz
 	TIM4->DIER |= TIM_DIER_UIE; //interrupt on
 	TIM4->CR1 &= ~TIM_CR1_DIR_Msk; // straight count
 	
