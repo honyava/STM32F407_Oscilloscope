@@ -120,6 +120,22 @@ void TIM3_Init(void)
 	NVIC_EnableIRQ(TIM3_IRQn);
 }
 
+void TIM4_Init(void)
+{
+	SET_BIT(RCC->APB1ENR, RCC_APB1ENR_TIM4EN); //clock to TIM4 (84 MHz)
+	TIM4->SMCR &= ~ TIM_SMCR_SMS; 
+	CLEAR_REG(TIM4->CR1);
+	TIM4->PSC = 8400;
+	TIM4->ARR = 5000; //10 Hz
+	TIM4->DIER |= TIM_DIER_UIE; //interrupt on
+	TIM4->CR1 &= ~TIM_CR1_DIR_Msk; // straight count
+	
+	MODIFY_REG(TIM4->CR2, TIM_CR2_MMS, 2 << TIM_CR2_MMS_Pos); // Update Event for display
+	SET_BIT(TIM4->CR1, TIM_CR1_CEN_Msk); // TIM4 enable
+//	NVIC_SetPriority(1, TIM3_IRQn);
+	NVIC_EnableIRQ(TIM4_IRQn);
+}
+
 void ADC1_Init(void) // for Temperature
 {
 	SET_BIT(RCC->AHB1ENR, RCC_AHB1ENR_GPIOAEN); // GPIOA Clock

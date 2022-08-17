@@ -11,6 +11,7 @@ extern volatile uint8_t flag_button;
 extern volatile uint8_t flag_ADC1;
 extern volatile uint8_t flag_DMA_ADC1_2;
 extern volatile uint8_t flag_DMA_ADC3;
+extern volatile uint8_t flag_lcd_update;
 extern volatile uint16_t ADC1_data;
 extern uint16_t ADC1_data_avg[10];
 extern uint32_t volatile BUFF_ADC1_2[50];
@@ -45,6 +46,7 @@ int main(void)
   lcdGrid(20, 20, COLOR_WHITE);
   //lcdFillCircle(30,30,10,COLOR_WHITE);
   
+  TIM4_Init();
 	TIM3_Init();
 	TIM2_Init();
 	Button_K1_Init();
@@ -65,11 +67,11 @@ int main(void)
 	while(1)
 	{
     
-    if(flag_DMA_ADC3 == 1)
+    if(flag_DMA_ADC3 == 1 && flag_lcd_update == 1)
     {
       if(status == ARM_MATH_SUCCESS)
       {
-        Delay(10);
+        //Delay(10);
         arm_rfft_q15(&S,(q15_t*)BUFF_ADC3, fft_Dbuff); //
         arm_cmplx_mag_q15(fft_Dbuff, (q15_t*)BUFF_ADC3, FFT_SIZE); //
         lcdSetCursor(215, 5);
@@ -78,6 +80,7 @@ int main(void)
       }
       
       flag_DMA_ADC3 = 0;
+      flag_lcd_update = 0;
     }
     
 		if(flag_DMA_ADC1_2 == 1)

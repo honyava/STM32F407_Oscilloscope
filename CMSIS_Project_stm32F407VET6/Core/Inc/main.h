@@ -24,6 +24,8 @@ void GPIOA6_Init(void);
 void GPIOA7_Init(void);
 void GPIOB1_Init(void); //LCD_BL
 
+void TIM4_Init(void);
+void TIM4_IRQHandler(void);
 void TIM3_Init(void);
 void TIM3_IRQHandler(void);
 void TIM2_Init(void);

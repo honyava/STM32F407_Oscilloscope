@@ -2,6 +2,7 @@
 
 volatile uint32_t SysTimer_ms = 0;
 volatile uint32_t Delay_ms = 0;
+volatile uint8_t flag_lcd_update = 0;
 volatile uint8_t flag_tim3 = 0;
 volatile uint8_t flag_tim2 = 0;
 volatile uint8_t flag_button = 0;
@@ -64,6 +65,15 @@ void TIM3_IRQHandler(void)
 			GPIOA->BSRR = GPIO_BSRR_BS6;
 			flag_tim3 = 0;
 		}
+	}
+}
+
+void TIM4_IRQHandler(void)
+{
+	if(READ_BIT(TIM4->SR, TIM_SR_UIF)) // check the flag of interrupt
+	{
+		TIM4->SR &= ~ TIM_SR_UIF; // Resetting the flag of interrupt
+    flag_lcd_update = 1;
 	}
 }
 
