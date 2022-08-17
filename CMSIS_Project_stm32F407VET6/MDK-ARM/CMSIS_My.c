@@ -177,14 +177,15 @@ void ADC1_2_Dual_Init(void)
 	MODIFY_REG(ADC1->CR2, ADC_CR2_EXTEN, 1 << ADC_CR2_EXTEN_Pos); //External TRG enable, Rising edge
 	MODIFY_REG(ADC1->SMPR1, ADC_SMPR1_SMP16, 1 << ADC_SMPR1_SMP16_Pos); // Channel 16, 15 cycles for conversation	
 	////////////////   Settings for PA0
-	MODIFY_REG(GPIOA->OSPEEDR, GPIO_OSPEEDR_OSPEED0_Msk, 0x10 << GPIO_OSPEEDR_OSPEED1_Pos); // High speed
-	GPIOA->MODER |= (3 << GPIO_MODER_MODE1_Pos); // Analog mode PA1
+	MODIFY_REG(GPIOA->OSPEEDR, GPIO_OSPEEDR_OSPEED0_Msk, 0x10 << GPIO_OSPEEDR_OSPEED0_Pos); // High speed
+	GPIOA->MODER |= (3 << GPIO_MODER_MODE0_Pos); // Analog mode PA0
 	CLEAR_REG(GPIOA->OTYPER);	
 	/////////// Setting ADC2
 	CLEAR_BIT(ADC2->CR1, ADC_CR1_RES_0);
 	CLEAR_BIT(ADC2->CR1, ADC_CR1_RES_1); // Resolution 12 bit
 	SET_BIT(ADC2->CR2, ADC_CR2_ADON); // A/D Converter ON 
-	ADC2->SQR3 = 1; // 1 channel for first conversation
+  ADC2->SQR2 = 0;
+	ADC2->SQR3 = 0; // PA0 channel for first conversation
 	ADC2->CR2 |=  ADC_CR2_EXTEN;
 	ADC2->CR2 |=  ADC_CR2_EXTSEL;
 	CLEAR_BIT(ADC2->CR2, ADC_CR2_ALIGN); // Right alignment
@@ -211,6 +212,11 @@ void ADC3_Init(void) // for Temperature
 {
 	SET_BIT(RCC->AHB1ENR, RCC_AHB1ENR_GPIOAEN); // GPIOA Clock
 	SET_BIT(RCC->APB2ENR,RCC_APB2ENR_ADC3EN); // Clock for ADC3
+  ////////////////   Settings for PA1
+	MODIFY_REG(GPIOA->OSPEEDR, GPIO_OSPEEDR_OSPEED1_Msk, 0x10 << GPIO_OSPEEDR_OSPEED1_Pos); // High speed
+	GPIOA->MODER |= (3 << GPIO_MODER_MODE1_Pos); // Analog mode PA0
+	CLEAR_REG(GPIOA->OTYPER);
+  /////////// Setting ADC3
 	SET_BIT(ADC3->CR1, ADC_CR1_EOCIE); // Enable interrupt fo EOC
 	CLEAR_BIT(ADC3->CR1, ADC_CR1_RES_0);
 	CLEAR_BIT(ADC3->CR1, ADC_CR1_RES_1); // Resolution 12 bit
