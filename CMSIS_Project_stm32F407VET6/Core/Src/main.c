@@ -3,6 +3,8 @@
 #include "arm_math.h"
 //#include "arm_const_structs.h"
 //#define FFT_SIZE 256
+#define size_x  280U   // 35*8
+#define size_y  200U   // 25*8
 
 q15_t fft_Dbuff[BUFF_SIZE*2] = {0};
 
@@ -16,7 +18,7 @@ extern volatile uint16_t ADC1_data;
 extern uint16_t ADC1_data_avg[10];
 extern uint32_t volatile BUFF_ADC1_2[50];
 uint16_t BUFF_ADC2[50] = {0};
-extern uint16_t volatile BUFF_ADC3[BUFF_SIZE];
+extern uint16_t BUFF_ADC3[BUFF_SIZE];
 const uint16_t V_25 = 760; //mV
 const float Avg_slope = 2.5f; //mV
 float volatile ADC1_data_conv = 0;
@@ -32,6 +34,12 @@ uint16_t k;
 uint8_t status;
 uint16_t maxValue_fft = 0;
 uint32_t maxIndex_fft = 0;
+uint16_t value_min, value_max;
+
+uint16_t buff_x[size_x] = {0}; // 280 element in a row for 0x in grid
+uint16_t buff_y[size_y] = {0}; // 200 element in a row for 0y in grid
+uint16_t x_scale = 0;
+uint16_t y_scale = 0;
 
 int main(void)
 {
@@ -66,11 +74,13 @@ int main(void)
   
 	while(1)
 	{
+    lcdGrid(20, 20, COLOR_WHITE);
     
-    if(flag_DMA_ADC3 == 1 && flag_lcd_update == 1)
+    if(flag_DMA_ADC3 == 1 && flag_lcd_update == 1 && flag_button == 1)
     {
       if(status == ARM_MATH_SUCCESS)
       {
+        //lcdDisplayOn();
         arm_rfft_q15(&S,(q15_t*)BUFF_ADC3, fft_Dbuff); // fft
         arm_cmplx_mag_q15(fft_Dbuff, (q15_t*)BUFF_ADC3, BUFF_SIZE); //magnitude for fft
         arm_max_q15(fft_Dbuff, BUFF_SIZE, (q15_t*)&maxValue_fft, &maxIndex_fft); // search max value
@@ -86,9 +96,20 @@ int main(void)
         lcdSetCursor(105, 5);
         lcdPrintf("Hz");
       }
-      
       flag_DMA_ADC3 = 0;
       flag_lcd_update = 0;
+    }
+    else if(flag_DMA_ADC3 == 1 && flag_lcd_update == 1 && flag_button == 0)
+    {
+      min_max_elems(BUFF_ADC3, BUFF_SIZE, &value_min, &value_max);
+      y_scale = (value_max - value_min)/(size_y - 1);
+      for(uint16_t i = 0; i < BUFF_SIZE; i++)
+      {
+        BUFF_ADC3[i] = BUFF_ADC3[i]*y_scale; //Make values from ADC3 for format of display
+      }
+      //lcdDisplayOff();
+      flag_DMA_ADC3 = 0;
+      flag_lcd_update = 0;      
     }
     
 		if(flag_DMA_ADC1_2 == 1)

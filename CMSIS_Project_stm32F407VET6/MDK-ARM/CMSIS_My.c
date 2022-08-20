@@ -327,4 +327,17 @@ void FSMC_Init(void)
                                         (1 << FSMC_BTR1_ACCMOD_Pos);     // Access mode 0 = A, 1 = B, 2 = C, 3 = D Use w/EXTMOD bit
 }
 
+///////////////////////////////////////My_func
+void min_max_elems(uint16_t *in_massive,uint16_t size,uint16_t *mn,uint16_t *mx)
+{
+ uint16_t i = 0;
+ *mx = *mn = *in_massive;
+ for(i = 0; i < size; i++)
+ {
+  if(*mn > in_massive[i]) *mn = in_massive[i];
+  if(*mx < in_massive[i]) *mx = in_massive[i];
+ }
+}
+///////////////////////////////////////
+
 	

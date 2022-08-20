@@ -13,7 +13,7 @@ volatile uint16_t ADC1_data = 0;
 uint16_t ADC1_data_avg[10] = {0};
 volatile uint8_t ADC1_Counter = 0;
 uint32_t volatile BUFF_ADC1_2[50] = {0};
-uint16_t volatile BUFF_ADC3[BUFF_SIZE] = {0};
+uint16_t BUFF_ADC3[BUFF_SIZE] = {0};
 uint16_t volatile BUFF_ADC1[50] = {0};
 
 //////////////////////////My func for Interrupt
@@ -77,10 +77,11 @@ void TIM4_IRQHandler(void)
 	}
 }
 
-void EXTI3_IRQHandler(void)
+void EXTI3_IRQHandler(void) // Interrupt for button K0
 {
 	EXTI->PR = (1 << EXTI_PR_PR3_Pos);
-	flag_button = 1;
+  if(flag_button == 1) flag_button = 0;
+	else flag_button = 1;
 }
 void ADC_IRQHandler(void)
 {

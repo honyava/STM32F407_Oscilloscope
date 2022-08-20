@@ -26,12 +26,41 @@ Project File Date:  08/17/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
-Build target 'CMSIS_Project_stm32F407VET6'
+Rebuild target 'CMSIS_Project_stm32F407VET6'
+compiling font20.c...
+compiling font12.c...
+compiling font8.c...
+assembling startup_stm32f407xx.s...
+compiling font24.c...
+compiling font16.c...
+compiling system_stm32f4xx.c...
+compiling lcd_ili9341.c...
+compiling Interrupt.c...
 compiling main.c...
+compiling ili9341.c...
+ILI9341\ili9341.c(263): warning:  #186-D: pointless comparison of unsigned integer with zero
+      if ((x < 0) || (y < 0) || (x >= lcdProperties.width) || (y >= lcdProperties.height))
+ILI9341\ili9341.c(263): warning:  #186-D: pointless comparison of unsigned integer with zero
+      if ((x < 0) || (y < 0) || (x >= lcdProperties.width) || (y >= lcdProperties.height))
+ILI9341\ili9341.c(1141): warning:  #186-D: pointless comparison of unsigned integer with zero
+      if ((x < 0) || (y < 0) || (x >= lcdProperties.width) || (y >= lcdProperties.height))
+ILI9341\ili9341.c(1141): warning:  #186-D: pointless comparison of unsigned integer with zero
+      if ((x < 0) || (y < 0) || (x >= lcdProperties.width) || (y >= lcdProperties.height))
+ILI9341\ili9341.c: 4 warnings, 0 errors
+compiling CMSIS_My.c...
+CMSIS_My.c(283): warning:  #61-D: integer operation result is out of range
+    |(3 << GPIO_OSPEEDR_OSPEED14_Pos)|(3 << GPIO_OSPEEDR_OSPEED15_Pos);
+CMSIS_My.c(286): warning:  #61-D: integer operation result is out of range
+    |(2 << GPIO_MODER_MODE15_Pos); //AF mode
+CMSIS_My.c(293): warning:  #61-D: integer operation result is out of range
+    |(3 << GPIO_OSPEEDR_OSPEED11_Pos)|(3 << GPIO_OSPEEDR_OSPEED12_Pos)|(3 << GPIO_OSPEEDR_OSPEED13_Pos)|(3 << GPIO_OSPEEDR_OSPEED14_Pos)|(3 << GPIO_OSPEEDR_OSPEED15_Pos);
+CMSIS_My.c(295): warning:  #61-D: integer operation result is out of range
+    |(2 << GPIO_MODER_MODE12_Pos)|(2 << GPIO_MODER_MODE13_Pos)|(2 << GPIO_MODER_MODE14_Pos)|(2 << GPIO_MODER_MODE15_Pos);
+CMSIS_My.c: 4 warnings, 0 errors
 linking...
-Program Size: Code=12348 RO-data=74868 RW-data=88 ZI-data=7768  
+Program Size: Code=12522 RO-data=74870 RW-data=92 ZI-data=8348  
 FromELF: creating hex file...
-"CMSIS_Project_stm32F407VET6\CMSIS_Project_stm32F407VET6.axf" - 0 Error(s), 0 Warning(s).
+"CMSIS_Project_stm32F407VET6\CMSIS_Project_stm32F407VET6.axf" - 0 Error(s), 8 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -55,7 +84,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE:5.6.0
       Include file:  CMSIS\Core\Include\tz_context.h
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>
