@@ -23,7 +23,7 @@ const uint16_t V_25 = 760; //mV
 const float Avg_slope = 2.5f; //mV
 float volatile ADC1_data_conv = 0;
 float volatile Temp_adc = 0;
-uint8_t j = 0;
+uint16_t j = 0;
 
 float T = 1.0/Fs; // Sampling time
 float t_del = 0.0; // time of 1 division
@@ -37,9 +37,9 @@ uint32_t maxIndex_fft = 0;
 uint16_t value_min, value_max;
 
 uint16_t buff_x[size_x] = {0}; // 280 element in a row for 0x in grid
-uint16_t buff_y[size_y] = {0}; // 200 element in a row for 0y in grid
-uint16_t x_scale = 0;
-uint16_t y_scale = 0;
+uint16_t buff_y[size_x] = {0}; 
+uint16_t volatile x_scale = 0;
+uint16_t volatile y_scale = 0;
 
 int main(void)
 {
@@ -72,15 +72,18 @@ int main(void)
 	//ADC1_Init();
   status = arm_rfft_init_q15(&S, BUFF_SIZE, 0, 1);
   
+  for(uint16_t i = 0; i < 280; i++) buff_x[i] = i + 1;
+  
 	while(1)
 	{
-    lcdGrid(20, 20, COLOR_WHITE);
+    //lcdGrid(20, 20, COLOR_WHITE);
     
     if(flag_DMA_ADC3 == 1 && flag_lcd_update == 1 && flag_button == 1)
     {
       if(status == ARM_MATH_SUCCESS)
       {
-        //lcdDisplayOn();
+        lcdDisplayOff();
+        lcdDisplayOn();
         arm_rfft_q15(&S,(q15_t*)BUFF_ADC3, fft_Dbuff); // fft
         arm_cmplx_mag_q15(fft_Dbuff, (q15_t*)BUFF_ADC3, BUFF_SIZE); //magnitude for fft
         arm_max_q15(fft_Dbuff, BUFF_SIZE, (q15_t*)&maxValue_fft, &maxIndex_fft); // search max value
@@ -101,30 +104,38 @@ int main(void)
     }
     else if(flag_DMA_ADC3 == 1 && flag_lcd_update == 1 && flag_button == 0)
     {
-      min_max_elems(BUFF_ADC3, BUFF_SIZE, &value_min, &value_max);
-      y_scale = (value_max - value_min)/(size_y - 1);
-      for(uint16_t i = 0; i < BUFF_SIZE; i++)
+      //lcdFillRect(0, 0, 320, 240, COLOR_BLACK); // Clear area lcd
+      //lcdGrid(20, 20, COLOR_WHITE);
+      min_max_elems(BUFF_ADC3, 840, &value_min, &value_max); // 280*3 = 840
+      y_scale = (value_max)/size_y;
+      for(uint16_t i = 0; i < 840; i++)
       {
-        BUFF_ADC3[i] = BUFF_ADC3[i]*y_scale; //Make values from ADC3 for format of display
+        BUFF_ADC3[i] = BUFF_ADC3[i]/y_scale; //Make values from ADC3 for format of display
+        if(i % 3 == 0) 
+        {
+          buff_y[j] = (BUFF_ADC3[i] + BUFF_ADC3[i+1]/y_scale + BUFF_ADC3[i+2]/y_scale)/3;
+          j++;
+        }  
       }
-      //lcdDisplayOff();
+      lcdPlot(buff_x, buff_y, 280, COLOR_BLUE);
+      j = 0;
       flag_DMA_ADC3 = 0;
       flag_lcd_update = 0;      
     }
     
-		if(flag_DMA_ADC1_2 == 1)
-		{
-      flag_DMA_ADC1_2 = 0;
-      //ADC1_data = (uint16_t)BUFF_ADC1_2;
-			for(uint8_t j = 0; j < 50; j++)
-			{
-				ADC1_data += (uint16_t)BUFF_ADC1_2[j]; // search sum
-        BUFF_ADC2[j] = (BUFF_ADC1_2[j]&0xFFFF0000) >> 16;
-			}
-			ADC1_data = ADC1_data/50; // search average
-			ADC1_data_conv = ADC1_data*Convert_to_mV;
-			Temp_adc = ((ADC1_data_conv - V_25)/Avg_slope) + 25; // Temperature by STM32
-		}
+//		if(flag_DMA_ADC1_2 == 1)
+//		{
+//      flag_DMA_ADC1_2 = 0;
+//      //ADC1_data = (uint16_t)BUFF_ADC1_2;
+//			for(uint8_t j = 0; j < 50; j++)
+//			{
+//				ADC1_data += (uint16_t)BUFF_ADC1_2[j]; // search sum
+//        BUFF_ADC2[j] = (BUFF_ADC1_2[j]&0xFFFF0000) >> 16;
+//			}
+//			ADC1_data = ADC1_data/50; // search average
+//			ADC1_data_conv = ADC1_data*Convert_to_mV;
+//			Temp_adc = ((ADC1_data_conv - V_25)/Avg_slope) + 25; // Temperature by STM32
+//		}
     ////////////////////For independet ADC1 + button
 //		if (flag_button == 1 && flag_ADC1 == 1)
 //		{

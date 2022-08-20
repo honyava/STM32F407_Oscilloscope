@@ -7,7 +7,7 @@
 #define side_x  35U //for square side
 #define side_y  25U
 
-#define offset_x  25U // for start coordinate grid
+#define offset_x  20U // for start coordinate grid
 #define offset_y  120U
 enum {
   MemoryAccessControlNormalOrder,

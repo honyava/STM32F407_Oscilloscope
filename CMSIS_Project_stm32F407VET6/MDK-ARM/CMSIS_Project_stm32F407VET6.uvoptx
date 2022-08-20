@@ -178,7 +178,7 @@
         <Ww>
           <count>5</count>
           <WinNumber>1</WinNumber>
-          <ItemText>BUFF_ADC3</ItemText>
+          <ItemText>BUFF_ADC3,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>6</count>
@@ -188,7 +188,7 @@
         <Ww>
           <count>7</count>
           <WinNumber>1</WinNumber>
-          <ItemText>maxIndex_fft</ItemText>
+          <ItemText>y_scale,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>8</count>
@@ -204,6 +204,11 @@
           <count>10</count>
           <WinNumber>1</WinNumber>
           <ItemText>value_max,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>11</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>buff_y,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

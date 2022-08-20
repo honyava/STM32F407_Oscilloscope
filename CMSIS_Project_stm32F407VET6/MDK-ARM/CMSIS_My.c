@@ -328,7 +328,7 @@ void FSMC_Init(void)
 }
 
 ///////////////////////////////////////My_func
-void min_max_elems(uint16_t *in_massive,uint16_t size,uint16_t *mn,uint16_t *mx)
+void min_max_elems(uint16_t *in_massive, uint16_t size, uint16_t *mn, uint16_t *mx)
 {
  uint16_t i = 0;
  *mx = *mn = *in_massive;

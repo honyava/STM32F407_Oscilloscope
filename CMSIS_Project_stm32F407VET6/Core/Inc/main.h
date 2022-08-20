@@ -10,7 +10,7 @@ extern "C" {
 #include "lcd_ili9341.h"
 #include "ili9341.h"
 
-#define BUFF_SIZE 1120 // 
+#define BUFF_SIZE 1024 // 
 #define Convert_to_mV 0.80586f  // 3300mV/4095
 #define Fs 100  // 0...65535    (1MHz/Fs)
 

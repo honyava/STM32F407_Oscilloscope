@@ -77,7 +77,7 @@ void TIM4_IRQHandler(void)
 	}
 }
 
-void EXTI3_IRQHandler(void) // Interrupt for button K0
+void EXTI3_IRQHandler(void) // Interrupt for button K1
 {
 	EXTI->PR = (1 << EXTI_PR_PR3_Pos);
   if(flag_button == 1) flag_button = 0;
