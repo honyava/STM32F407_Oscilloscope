@@ -38,17 +38,16 @@ Section Cross References
     main.o(i.main) refers to f2d.o(.text) for __aeabi_f2d
     main.o(i.main) refers to ili9341.o(i.lcdPrintf) for lcdPrintf
     main.o(i.main) refers to arm_rfft_init_q15.o(.text) for arm_rfft_init_q15
+    main.o(i.main) refers to ili9341.o(i.lcdFillRect) for lcdFillRect
     main.o(i.main) refers to cmsis_my.o(i.min_max_elems) for min_max_elems
-    main.o(i.main) refers to ili9341.o(i.lcdDisplayOff) for lcdDisplayOff
-    main.o(i.main) refers to ili9341.o(i.lcdDisplayOn) for lcdDisplayOn
     main.o(i.main) refers to arm_rfft_q15.o(.text) for arm_rfft_q15
     main.o(i.main) refers to arm_cmplx_mag_q15.o(.text) for arm_cmplx_mag_q15
     main.o(i.main) refers to arm_max_q15.o(.text) for arm_max_q15
     main.o(i.main) refers to ili9341.o(i.lcdPlot) for lcdPlot
     main.o(i.main) refers to main.o(.data) for .data
     main.o(i.main) refers to main.o(.bss) for .bss
-    main.o(i.main) refers to interrupt.o(.data) for flag_button
     main.o(i.main) refers to interrupt.o(.bss) for BUFF_ADC3
+    main.o(i.main) refers to interrupt.o(.data) for flag_DMA_ADC3
     cmsis_my.o(i.ADC1_2_Dual_Init) refers to interrupt.o(.bss) for BUFF_ADC1_2
     cmsis_my.o(i.ADC1_Init) refers to interrupt.o(.bss) for BUFF_ADC1
     cmsis_my.o(i.ADC3_Init) refers to interrupt.o(.bss) for BUFF_ADC3
@@ -118,6 +117,7 @@ Section Cross References
     ili9341.o(i.lcdInit) refers to ili9341.o(i.lcdBuildMemoryAccessControlConfig) for lcdBuildMemoryAccessControlConfig
     ili9341.o(i.lcdInit) refers to interrupt.o(i.Delay) for Delay
     ili9341.o(i.lcdInit) refers to ili9341.o(.data) for .data
+    ili9341.o(i.lcdPlot) refers to ili9341.o(i.lcdHome) for lcdHome
     ili9341.o(i.lcdPlot) refers to ili9341.o(i.lcdDrawLine) for lcdDrawLine
     ili9341.o(i.lcdPrintf) refers to printfa.o(i.__0vsprintf) for vsprintf
     ili9341.o(i.lcdPrintf) refers to ili9341.o(i.lcdDrawChar) for lcdDrawChar
@@ -398,6 +398,8 @@ Removing Unused input sections from the image.
     Removing ili9341.o(i.find_max), (32 bytes).
     Removing ili9341.o(i.lcdBacklightOff), (16 bytes).
     Removing ili9341.o(i.lcdColor565), (20 bytes).
+    Removing ili9341.o(i.lcdDisplayOff), (24 bytes).
+    Removing ili9341.o(i.lcdDisplayOn), (20 bytes).
     Removing ili9341.o(i.lcdDrawCircle), (272 bytes).
     Removing ili9341.o(i.lcdDrawCircleHelper), (230 bytes).
     Removing ili9341.o(i.lcdDrawImage), (136 bytes).
@@ -406,7 +408,6 @@ Removing Unused input sections from the image.
     Removing ili9341.o(i.lcdDrawTriangle), (56 bytes).
     Removing ili9341.o(i.lcdFillCircle), (46 bytes).
     Removing ili9341.o(i.lcdFillCircleHelper), (202 bytes).
-    Removing ili9341.o(i.lcdFillRect), (84 bytes).
     Removing ili9341.o(i.lcdFillRoundRect), (98 bytes).
     Removing ili9341.o(i.lcdFillTriangle), (344 bytes).
     Removing ili9341.o(i.lcdGetControllerID), (32 bytes).
@@ -415,7 +416,6 @@ Removing Unused input sections from the image.
     Removing ili9341.o(i.lcdGetProperties), (16 bytes).
     Removing ili9341.o(i.lcdGetTextFont), (12 bytes).
     Removing ili9341.o(i.lcdGetWidth), (12 bytes).
-    Removing ili9341.o(i.lcdHome), (36 bytes).
     Removing ili9341.o(i.lcdInversionOff), (10 bytes).
     Removing ili9341.o(i.lcdInversionOn), (10 bytes).
     Removing ili9341.o(i.lcdReadPixel), (84 bytes).
@@ -554,7 +554,7 @@ Removing Unused input sections from the image.
     Removing arm_bitreversal.o(.revsh_text), (4 bytes).
     Removing arm_bitreversal.o(.rrx_text), (6 bytes).
 
-196 unused section(s) (total 261630 bytes) removed from the image.
+196 unused section(s) (total 261554 bytes) removed from the image.
 
 ==============================================================================
 
@@ -721,53 +721,53 @@ Image Symbol Table
     i.lcdBacklightOn                         0x080028c8   Section        0  ili9341.o(i.lcdBacklightOn)
     i.lcdBuildMemoryAccessControlConfig      0x080028d4   Section        0  ili9341.o(i.lcdBuildMemoryAccessControlConfig)
     lcdBuildMemoryAccessControlConfig        0x080028d5   Thumb Code    48  ili9341.o(i.lcdBuildMemoryAccessControlConfig)
-    i.lcdDisplayOff                          0x08002904   Section        0  ili9341.o(i.lcdDisplayOff)
-    i.lcdDisplayOn                           0x0800291c   Section        0  ili9341.o(i.lcdDisplayOn)
-    i.lcdDrawChar                            0x08002930   Section        0  ili9341.o(i.lcdDrawChar)
-    i.lcdDrawHLine                           0x080029f4   Section        0  ili9341.o(i.lcdDrawHLine)
-    i.lcdDrawLine                            0x08002a38   Section        0  ili9341.o(i.lcdDrawLine)
-    i.lcdDrawPixel                           0x08002ad8   Section        0  ili9341.o(i.lcdDrawPixel)
-    i.lcdDrawVLine                           0x08002b00   Section        0  ili9341.o(i.lcdDrawVLine)
-    i.lcdFillRGB                             0x08002b4c   Section        0  ili9341.o(i.lcdFillRGB)
-    i.lcdGrid                                0x08002b80   Section        0  ili9341.o(i.lcdGrid)
-    i.lcdInit                                0x08002c58   Section        0  ili9341.o(i.lcdInit)
-    i.lcdPlot                                0x08002e34   Section        0  ili9341.o(i.lcdPlot)
-    i.lcdPrintf                              0x08002eb0   Section        0  ili9341.o(i.lcdPrintf)
-    i.lcdSetCursor                           0x08002f5c   Section        0  ili9341.o(i.lcdSetCursor)
-    i.lcdSetOrientation                      0x08002f70   Section        0  ili9341.o(i.lcdSetOrientation)
-    i.lcdSetWindow                           0x08002fd0   Section        0  ili9341.o(i.lcdSetWindow)
-    i.lcdSquare                              0x0800300c   Section        0  ili9341.o(i.lcdSquare)
-    i.main                                   0x08003050   Section        0  main.o(i.main)
-    i.min_max_elems                          0x080032b0   Section        0  cmsis_my.o(i.min_max_elems)
-    .constdata                               0x080032de   Section     1140  font12.o(.constdata)
-    .constdata                               0x08003752   Section    32768  arm_rfft_init_q15.o(.constdata)
-    .constdata                               0x0800b754   Section       16  arm_const_structs.o(.constdata)
-    .constdata                               0x0800b764   Section       16  arm_const_structs.o(.constdata)
-    .constdata                               0x0800b774   Section       16  arm_const_structs.o(.constdata)
-    .constdata                               0x0800b784   Section       16  arm_const_structs.o(.constdata)
-    .constdata                               0x0800b794   Section       16  arm_const_structs.o(.constdata)
-    .constdata                               0x0800b7a4   Section       16  arm_const_structs.o(.constdata)
-    .constdata                               0x0800b7b4   Section       16  arm_const_structs.o(.constdata)
-    .constdata                               0x0800b7c4   Section       16  arm_const_structs.o(.constdata)
-    .constdata                               0x0800b7d4   Section       16  arm_const_structs.o(.constdata)
-    .constdata                               0x0800b7e4   Section       48  arm_common_tables.o(.constdata)
-    .constdata                               0x0800b814   Section       96  arm_common_tables.o(.constdata)
-    .constdata                               0x0800b874   Section      192  arm_common_tables.o(.constdata)
-    .constdata                               0x0800b934   Section      384  arm_common_tables.o(.constdata)
-    .constdata                               0x0800bab4   Section      768  arm_common_tables.o(.constdata)
-    .constdata                               0x0800bdb4   Section     1536  arm_common_tables.o(.constdata)
-    .constdata                               0x0800c3b4   Section     3072  arm_common_tables.o(.constdata)
-    .constdata                               0x0800cfb4   Section     6144  arm_common_tables.o(.constdata)
-    .constdata                               0x0800e7b4   Section    12288  arm_common_tables.o(.constdata)
-    .constdata                               0x080117b4   Section       24  arm_common_tables.o(.constdata)
-    .constdata                               0x080117cc   Section       48  arm_common_tables.o(.constdata)
-    .constdata                               0x080117fc   Section      112  arm_common_tables.o(.constdata)
-    .constdata                               0x0801186c   Section      224  arm_common_tables.o(.constdata)
-    .constdata                               0x0801194c   Section      480  arm_common_tables.o(.constdata)
-    .constdata                               0x08011b2c   Section      960  arm_common_tables.o(.constdata)
-    .constdata                               0x08011eec   Section     1984  arm_common_tables.o(.constdata)
-    .constdata                               0x080126ac   Section     3968  arm_common_tables.o(.constdata)
-    .constdata                               0x0801362c   Section     8064  arm_common_tables.o(.constdata)
+    i.lcdDrawChar                            0x08002904   Section        0  ili9341.o(i.lcdDrawChar)
+    i.lcdDrawHLine                           0x080029c8   Section        0  ili9341.o(i.lcdDrawHLine)
+    i.lcdDrawLine                            0x08002a0c   Section        0  ili9341.o(i.lcdDrawLine)
+    i.lcdDrawPixel                           0x08002aac   Section        0  ili9341.o(i.lcdDrawPixel)
+    i.lcdDrawVLine                           0x08002ad4   Section        0  ili9341.o(i.lcdDrawVLine)
+    i.lcdFillRGB                             0x08002b20   Section        0  ili9341.o(i.lcdFillRGB)
+    i.lcdFillRect                            0x08002b54   Section        0  ili9341.o(i.lcdFillRect)
+    i.lcdGrid                                0x08002ba8   Section        0  ili9341.o(i.lcdGrid)
+    i.lcdHome                                0x08002c80   Section        0  ili9341.o(i.lcdHome)
+    i.lcdInit                                0x08002ca4   Section        0  ili9341.o(i.lcdInit)
+    i.lcdPlot                                0x08002e80   Section        0  ili9341.o(i.lcdPlot)
+    i.lcdPrintf                              0x08002f00   Section        0  ili9341.o(i.lcdPrintf)
+    i.lcdSetCursor                           0x08002fac   Section        0  ili9341.o(i.lcdSetCursor)
+    i.lcdSetOrientation                      0x08002fc0   Section        0  ili9341.o(i.lcdSetOrientation)
+    i.lcdSetWindow                           0x08003020   Section        0  ili9341.o(i.lcdSetWindow)
+    i.lcdSquare                              0x0800305c   Section        0  ili9341.o(i.lcdSquare)
+    i.main                                   0x080030a0   Section        0  main.o(i.main)
+    i.min_max_elems                          0x080033a0   Section        0  cmsis_my.o(i.min_max_elems)
+    .constdata                               0x080033ce   Section     1140  font12.o(.constdata)
+    .constdata                               0x08003842   Section    32768  arm_rfft_init_q15.o(.constdata)
+    .constdata                               0x0800b844   Section       16  arm_const_structs.o(.constdata)
+    .constdata                               0x0800b854   Section       16  arm_const_structs.o(.constdata)
+    .constdata                               0x0800b864   Section       16  arm_const_structs.o(.constdata)
+    .constdata                               0x0800b874   Section       16  arm_const_structs.o(.constdata)
+    .constdata                               0x0800b884   Section       16  arm_const_structs.o(.constdata)
+    .constdata                               0x0800b894   Section       16  arm_const_structs.o(.constdata)
+    .constdata                               0x0800b8a4   Section       16  arm_const_structs.o(.constdata)
+    .constdata                               0x0800b8b4   Section       16  arm_const_structs.o(.constdata)
+    .constdata                               0x0800b8c4   Section       16  arm_const_structs.o(.constdata)
+    .constdata                               0x0800b8d4   Section       48  arm_common_tables.o(.constdata)
+    .constdata                               0x0800b904   Section       96  arm_common_tables.o(.constdata)
+    .constdata                               0x0800b964   Section      192  arm_common_tables.o(.constdata)
+    .constdata                               0x0800ba24   Section      384  arm_common_tables.o(.constdata)
+    .constdata                               0x0800bba4   Section      768  arm_common_tables.o(.constdata)
+    .constdata                               0x0800bea4   Section     1536  arm_common_tables.o(.constdata)
+    .constdata                               0x0800c4a4   Section     3072  arm_common_tables.o(.constdata)
+    .constdata                               0x0800d0a4   Section     6144  arm_common_tables.o(.constdata)
+    .constdata                               0x0800e8a4   Section    12288  arm_common_tables.o(.constdata)
+    .constdata                               0x080118a4   Section       24  arm_common_tables.o(.constdata)
+    .constdata                               0x080118bc   Section       48  arm_common_tables.o(.constdata)
+    .constdata                               0x080118ec   Section      112  arm_common_tables.o(.constdata)
+    .constdata                               0x0801195c   Section      224  arm_common_tables.o(.constdata)
+    .constdata                               0x08011a3c   Section      480  arm_common_tables.o(.constdata)
+    .constdata                               0x08011c1c   Section      960  arm_common_tables.o(.constdata)
+    .constdata                               0x08011fdc   Section     1984  arm_common_tables.o(.constdata)
+    .constdata                               0x0801279c   Section     3968  arm_common_tables.o(.constdata)
+    .constdata                               0x0801371c   Section     8064  arm_common_tables.o(.constdata)
     .data                                    0x20000000   Section       28  main.o(.data)
     .data                                    0x2000001c   Section       20  interrupt.o(.data)
     .data                                    0x20000030   Section        8  font12.o(.data)
@@ -967,56 +967,56 @@ Image Symbol Table
     __scatterload_null                       0x08002025   Thumb Code     2  handlers.o(i.__scatterload_null)
     __scatterload_zeroinit                   0x08002027   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
     lcdBacklightOn                           0x080028c9   Thumb Code     8  ili9341.o(i.lcdBacklightOn)
-    lcdDisplayOff                            0x08002905   Thumb Code    18  ili9341.o(i.lcdDisplayOff)
-    lcdDisplayOn                             0x0800291d   Thumb Code    16  ili9341.o(i.lcdDisplayOn)
-    lcdDrawChar                              0x08002931   Thumb Code   192  ili9341.o(i.lcdDrawChar)
-    lcdDrawHLine                             0x080029f5   Thumb Code    60  ili9341.o(i.lcdDrawHLine)
-    lcdDrawLine                              0x08002a39   Thumb Code   160  ili9341.o(i.lcdDrawLine)
-    lcdDrawPixel                             0x08002ad9   Thumb Code    32  ili9341.o(i.lcdDrawPixel)
-    lcdDrawVLine                             0x08002b01   Thumb Code    68  ili9341.o(i.lcdDrawVLine)
-    lcdFillRGB                               0x08002b4d   Thumb Code    44  ili9341.o(i.lcdFillRGB)
-    lcdGrid                                  0x08002b81   Thumb Code   216  ili9341.o(i.lcdGrid)
-    lcdInit                                  0x08002c59   Thumb Code   468  ili9341.o(i.lcdInit)
-    lcdPlot                                  0x08002e35   Thumb Code   122  ili9341.o(i.lcdPlot)
-    lcdPrintf                                0x08002eb1   Thumb Code   162  ili9341.o(i.lcdPrintf)
-    lcdSetCursor                             0x08002f5d   Thumb Code    14  ili9341.o(i.lcdSetCursor)
-    lcdSetOrientation                        0x08002f71   Thumb Code    88  ili9341.o(i.lcdSetOrientation)
-    lcdSetWindow                             0x08002fd1   Thumb Code    54  ili9341.o(i.lcdSetWindow)
-    lcdSquare                                0x0800300d   Thumb Code    66  ili9341.o(i.lcdSquare)
-    main                                     0x08003051   Thumb Code   530  main.o(i.main)
-    min_max_elems                            0x080032b1   Thumb Code    46  cmsis_my.o(i.min_max_elems)
-    Font12_Table                             0x080032de   Data        1140  font12.o(.constdata)
-    realCoefAQ15                             0x08003752   Data       16384  arm_rfft_init_q15.o(.constdata)
-    realCoefBQ15                             0x08007752   Data       16384  arm_rfft_init_q15.o(.constdata)
-    arm_cfft_sR_q15_len16                    0x0800b754   Data          16  arm_const_structs.o(.constdata)
-    arm_cfft_sR_q15_len32                    0x0800b764   Data          16  arm_const_structs.o(.constdata)
-    arm_cfft_sR_q15_len64                    0x0800b774   Data          16  arm_const_structs.o(.constdata)
-    arm_cfft_sR_q15_len128                   0x0800b784   Data          16  arm_const_structs.o(.constdata)
-    arm_cfft_sR_q15_len256                   0x0800b794   Data          16  arm_const_structs.o(.constdata)
-    arm_cfft_sR_q15_len512                   0x0800b7a4   Data          16  arm_const_structs.o(.constdata)
-    arm_cfft_sR_q15_len1024                  0x0800b7b4   Data          16  arm_const_structs.o(.constdata)
-    arm_cfft_sR_q15_len2048                  0x0800b7c4   Data          16  arm_const_structs.o(.constdata)
-    arm_cfft_sR_q15_len4096                  0x0800b7d4   Data          16  arm_const_structs.o(.constdata)
-    twiddleCoef_16_q15                       0x0800b7e4   Data          48  arm_common_tables.o(.constdata)
-    twiddleCoef_32_q15                       0x0800b814   Data          96  arm_common_tables.o(.constdata)
-    twiddleCoef_64_q15                       0x0800b874   Data         192  arm_common_tables.o(.constdata)
-    twiddleCoef_128_q15                      0x0800b934   Data         384  arm_common_tables.o(.constdata)
-    twiddleCoef_256_q15                      0x0800bab4   Data         768  arm_common_tables.o(.constdata)
-    twiddleCoef_512_q15                      0x0800bdb4   Data        1536  arm_common_tables.o(.constdata)
-    twiddleCoef_1024_q15                     0x0800c3b4   Data        3072  arm_common_tables.o(.constdata)
-    twiddleCoef_2048_q15                     0x0800cfb4   Data        6144  arm_common_tables.o(.constdata)
-    twiddleCoef_4096_q15                     0x0800e7b4   Data       12288  arm_common_tables.o(.constdata)
-    armBitRevIndexTable_fixed_16             0x080117b4   Data          24  arm_common_tables.o(.constdata)
-    armBitRevIndexTable_fixed_32             0x080117cc   Data          48  arm_common_tables.o(.constdata)
-    armBitRevIndexTable_fixed_64             0x080117fc   Data         112  arm_common_tables.o(.constdata)
-    armBitRevIndexTable_fixed_128            0x0801186c   Data         224  arm_common_tables.o(.constdata)
-    armBitRevIndexTable_fixed_256            0x0801194c   Data         480  arm_common_tables.o(.constdata)
-    armBitRevIndexTable_fixed_512            0x08011b2c   Data         960  arm_common_tables.o(.constdata)
-    armBitRevIndexTable_fixed_1024           0x08011eec   Data        1984  arm_common_tables.o(.constdata)
-    armBitRevIndexTable_fixed_2048           0x080126ac   Data        3968  arm_common_tables.o(.constdata)
-    armBitRevIndexTable_fixed_4096           0x0801362c   Data        8064  arm_common_tables.o(.constdata)
-    Region$$Table$$Base                      0x080155ac   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x080155cc   Number         0  anon$$obj.o(Region$$Table)
+    lcdDrawChar                              0x08002905   Thumb Code   192  ili9341.o(i.lcdDrawChar)
+    lcdDrawHLine                             0x080029c9   Thumb Code    60  ili9341.o(i.lcdDrawHLine)
+    lcdDrawLine                              0x08002a0d   Thumb Code   160  ili9341.o(i.lcdDrawLine)
+    lcdDrawPixel                             0x08002aad   Thumb Code    32  ili9341.o(i.lcdDrawPixel)
+    lcdDrawVLine                             0x08002ad5   Thumb Code    68  ili9341.o(i.lcdDrawVLine)
+    lcdFillRGB                               0x08002b21   Thumb Code    44  ili9341.o(i.lcdFillRGB)
+    lcdFillRect                              0x08002b55   Thumb Code    80  ili9341.o(i.lcdFillRect)
+    lcdGrid                                  0x08002ba9   Thumb Code   216  ili9341.o(i.lcdGrid)
+    lcdHome                                  0x08002c81   Thumb Code    30  ili9341.o(i.lcdHome)
+    lcdInit                                  0x08002ca5   Thumb Code   468  ili9341.o(i.lcdInit)
+    lcdPlot                                  0x08002e81   Thumb Code   126  ili9341.o(i.lcdPlot)
+    lcdPrintf                                0x08002f01   Thumb Code   162  ili9341.o(i.lcdPrintf)
+    lcdSetCursor                             0x08002fad   Thumb Code    14  ili9341.o(i.lcdSetCursor)
+    lcdSetOrientation                        0x08002fc1   Thumb Code    88  ili9341.o(i.lcdSetOrientation)
+    lcdSetWindow                             0x08003021   Thumb Code    54  ili9341.o(i.lcdSetWindow)
+    lcdSquare                                0x0800305d   Thumb Code    66  ili9341.o(i.lcdSquare)
+    main                                     0x080030a1   Thumb Code   688  main.o(i.main)
+    min_max_elems                            0x080033a1   Thumb Code    46  cmsis_my.o(i.min_max_elems)
+    Font12_Table                             0x080033ce   Data        1140  font12.o(.constdata)
+    realCoefAQ15                             0x08003842   Data       16384  arm_rfft_init_q15.o(.constdata)
+    realCoefBQ15                             0x08007842   Data       16384  arm_rfft_init_q15.o(.constdata)
+    arm_cfft_sR_q15_len16                    0x0800b844   Data          16  arm_const_structs.o(.constdata)
+    arm_cfft_sR_q15_len32                    0x0800b854   Data          16  arm_const_structs.o(.constdata)
+    arm_cfft_sR_q15_len64                    0x0800b864   Data          16  arm_const_structs.o(.constdata)
+    arm_cfft_sR_q15_len128                   0x0800b874   Data          16  arm_const_structs.o(.constdata)
+    arm_cfft_sR_q15_len256                   0x0800b884   Data          16  arm_const_structs.o(.constdata)
+    arm_cfft_sR_q15_len512                   0x0800b894   Data          16  arm_const_structs.o(.constdata)
+    arm_cfft_sR_q15_len1024                  0x0800b8a4   Data          16  arm_const_structs.o(.constdata)
+    arm_cfft_sR_q15_len2048                  0x0800b8b4   Data          16  arm_const_structs.o(.constdata)
+    arm_cfft_sR_q15_len4096                  0x0800b8c4   Data          16  arm_const_structs.o(.constdata)
+    twiddleCoef_16_q15                       0x0800b8d4   Data          48  arm_common_tables.o(.constdata)
+    twiddleCoef_32_q15                       0x0800b904   Data          96  arm_common_tables.o(.constdata)
+    twiddleCoef_64_q15                       0x0800b964   Data         192  arm_common_tables.o(.constdata)
+    twiddleCoef_128_q15                      0x0800ba24   Data         384  arm_common_tables.o(.constdata)
+    twiddleCoef_256_q15                      0x0800bba4   Data         768  arm_common_tables.o(.constdata)
+    twiddleCoef_512_q15                      0x0800bea4   Data        1536  arm_common_tables.o(.constdata)
+    twiddleCoef_1024_q15                     0x0800c4a4   Data        3072  arm_common_tables.o(.constdata)
+    twiddleCoef_2048_q15                     0x0800d0a4   Data        6144  arm_common_tables.o(.constdata)
+    twiddleCoef_4096_q15                     0x0800e8a4   Data       12288  arm_common_tables.o(.constdata)
+    armBitRevIndexTable_fixed_16             0x080118a4   Data          24  arm_common_tables.o(.constdata)
+    armBitRevIndexTable_fixed_32             0x080118bc   Data          48  arm_common_tables.o(.constdata)
+    armBitRevIndexTable_fixed_64             0x080118ec   Data         112  arm_common_tables.o(.constdata)
+    armBitRevIndexTable_fixed_128            0x0801195c   Data         224  arm_common_tables.o(.constdata)
+    armBitRevIndexTable_fixed_256            0x08011a3c   Data         480  arm_common_tables.o(.constdata)
+    armBitRevIndexTable_fixed_512            0x08011c1c   Data         960  arm_common_tables.o(.constdata)
+    armBitRevIndexTable_fixed_1024           0x08011fdc   Data        1984  arm_common_tables.o(.constdata)
+    armBitRevIndexTable_fixed_2048           0x0801279c   Data        3968  arm_common_tables.o(.constdata)
+    armBitRevIndexTable_fixed_4096           0x0801371c   Data        8064  arm_common_tables.o(.constdata)
+    Region$$Table$$Base                      0x0801569c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x080156bc   Number         0  anon$$obj.o(Region$$Table)
     status                                   0x20000000   Data           1  main.o(.data)
     j                                        0x20000002   Data           2  main.o(.data)
     Amplitude                                0x20000004   Data           2  main.o(.data)
@@ -1056,9 +1056,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000249
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00015624, Max: 0x00080000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00015714, Max: 0x00080000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000155cc, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000156bc, Max: 0x00080000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1136,77 +1136,77 @@ Memory Map of the image
     0x080028be   0x080028be   0x0000000a   Code   RO         1228    i._sputc            mc_w.l(printfa.o)
     0x080028c8   0x080028c8   0x0000000c   Code   RO          428    i.lcdBacklightOn    ili9341.o
     0x080028d4   0x080028d4   0x00000030   Code   RO          429    i.lcdBuildMemoryAccessControlConfig  ili9341.o
-    0x08002904   0x08002904   0x00000018   Code   RO          431    i.lcdDisplayOff     ili9341.o
-    0x0800291c   0x0800291c   0x00000014   Code   RO          432    i.lcdDisplayOn      ili9341.o
-    0x08002930   0x08002930   0x000000c4   Code   RO          433    i.lcdDrawChar       ili9341.o
-    0x080029f4   0x080029f4   0x00000044   Code   RO          436    i.lcdDrawHLine      ili9341.o
-    0x08002a38   0x08002a38   0x000000a0   Code   RO          438    i.lcdDrawLine       ili9341.o
-    0x08002ad8   0x08002ad8   0x00000028   Code   RO          439    i.lcdDrawPixel      ili9341.o
-    0x08002b00   0x08002b00   0x0000004c   Code   RO          443    i.lcdDrawVLine      ili9341.o
-    0x08002b4c   0x08002b4c   0x00000034   Code   RO          446    i.lcdFillRGB        ili9341.o
-    0x08002b80   0x08002b80   0x000000d8   Code   RO          456    i.lcdGrid           ili9341.o
-    0x08002c58   0x08002c58   0x000001dc   Code   RO          458    i.lcdInit           ili9341.o
-    0x08002e34   0x08002e34   0x0000007a   Code   RO          461    i.lcdPlot           ili9341.o
-    0x08002eae   0x08002eae   0x00000002   PAD
-    0x08002eb0   0x08002eb0   0x000000ac   Code   RO          462    i.lcdPrintf         ili9341.o
-    0x08002f5c   0x08002f5c   0x00000014   Code   RO          464    i.lcdSetCursor      ili9341.o
-    0x08002f70   0x08002f70   0x00000060   Code   RO          465    i.lcdSetOrientation  ili9341.o
-    0x08002fd0   0x08002fd0   0x0000003c   Code   RO          469    i.lcdSetWindow      ili9341.o
-    0x0800300c   0x0800300c   0x00000042   Code   RO          470    i.lcdSquare         ili9341.o
-    0x0800304e   0x0800304e   0x00000002   PAD
-    0x08003050   0x08003050   0x00000260   Code   RO           13    i.main              main.o
-    0x080032b0   0x080032b0   0x0000002e   Code   RO          130    i.min_max_elems     cmsis_my.o
-    0x080032de   0x080032de   0x00000474   Data   RO          367    .constdata          font12.o
-    0x08003752   0x08003752   0x00008000   Data   RO          845    .constdata          arm_cortexM4lf_math.lib(arm_rfft_init_q15.o)
-    0x0800b752   0x0800b752   0x00000002   PAD
-    0x0800b754   0x0800b754   0x00000010   Data   RO          995    .constdata          arm_cortexM4lf_math.lib(arm_const_structs.o)
-    0x0800b764   0x0800b764   0x00000010   Data   RO          996    .constdata          arm_cortexM4lf_math.lib(arm_const_structs.o)
-    0x0800b774   0x0800b774   0x00000010   Data   RO          997    .constdata          arm_cortexM4lf_math.lib(arm_const_structs.o)
-    0x0800b784   0x0800b784   0x00000010   Data   RO          998    .constdata          arm_cortexM4lf_math.lib(arm_const_structs.o)
-    0x0800b794   0x0800b794   0x00000010   Data   RO          999    .constdata          arm_cortexM4lf_math.lib(arm_const_structs.o)
-    0x0800b7a4   0x0800b7a4   0x00000010   Data   RO         1000    .constdata          arm_cortexM4lf_math.lib(arm_const_structs.o)
-    0x0800b7b4   0x0800b7b4   0x00000010   Data   RO         1001    .constdata          arm_cortexM4lf_math.lib(arm_const_structs.o)
-    0x0800b7c4   0x0800b7c4   0x00000010   Data   RO         1002    .constdata          arm_cortexM4lf_math.lib(arm_const_structs.o)
-    0x0800b7d4   0x0800b7d4   0x00000010   Data   RO         1003    .constdata          arm_cortexM4lf_math.lib(arm_const_structs.o)
-    0x0800b7e4   0x0800b7e4   0x00000030   Data   RO         1128    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
-    0x0800b814   0x0800b814   0x00000060   Data   RO         1129    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
-    0x0800b874   0x0800b874   0x000000c0   Data   RO         1130    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
-    0x0800b934   0x0800b934   0x00000180   Data   RO         1131    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
-    0x0800bab4   0x0800bab4   0x00000300   Data   RO         1132    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
-    0x0800bdb4   0x0800bdb4   0x00000600   Data   RO         1133    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
-    0x0800c3b4   0x0800c3b4   0x00000c00   Data   RO         1134    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
-    0x0800cfb4   0x0800cfb4   0x00001800   Data   RO         1135    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
-    0x0800e7b4   0x0800e7b4   0x00003000   Data   RO         1136    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
-    0x080117b4   0x080117b4   0x00000018   Data   RO         1148    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
-    0x080117cc   0x080117cc   0x00000030   Data   RO         1149    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
-    0x080117fc   0x080117fc   0x00000070   Data   RO         1150    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
-    0x0801186c   0x0801186c   0x000000e0   Data   RO         1151    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
-    0x0801194c   0x0801194c   0x000001e0   Data   RO         1152    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
-    0x08011b2c   0x08011b2c   0x000003c0   Data   RO         1153    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
-    0x08011eec   0x08011eec   0x000007c0   Data   RO         1154    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
-    0x080126ac   0x080126ac   0x00000f80   Data   RO         1155    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
-    0x0801362c   0x0801362c   0x00001f80   Data   RO         1156    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
-    0x080155ac   0x080155ac   0x00000020   Data   RO         1291    Region$$Table       anon$$obj.o
+    0x08002904   0x08002904   0x000000c4   Code   RO          433    i.lcdDrawChar       ili9341.o
+    0x080029c8   0x080029c8   0x00000044   Code   RO          436    i.lcdDrawHLine      ili9341.o
+    0x08002a0c   0x08002a0c   0x000000a0   Code   RO          438    i.lcdDrawLine       ili9341.o
+    0x08002aac   0x08002aac   0x00000028   Code   RO          439    i.lcdDrawPixel      ili9341.o
+    0x08002ad4   0x08002ad4   0x0000004c   Code   RO          443    i.lcdDrawVLine      ili9341.o
+    0x08002b20   0x08002b20   0x00000034   Code   RO          446    i.lcdFillRGB        ili9341.o
+    0x08002b54   0x08002b54   0x00000054   Code   RO          447    i.lcdFillRect       ili9341.o
+    0x08002ba8   0x08002ba8   0x000000d8   Code   RO          456    i.lcdGrid           ili9341.o
+    0x08002c80   0x08002c80   0x00000024   Code   RO          457    i.lcdHome           ili9341.o
+    0x08002ca4   0x08002ca4   0x000001dc   Code   RO          458    i.lcdInit           ili9341.o
+    0x08002e80   0x08002e80   0x0000007e   Code   RO          461    i.lcdPlot           ili9341.o
+    0x08002efe   0x08002efe   0x00000002   PAD
+    0x08002f00   0x08002f00   0x000000ac   Code   RO          462    i.lcdPrintf         ili9341.o
+    0x08002fac   0x08002fac   0x00000014   Code   RO          464    i.lcdSetCursor      ili9341.o
+    0x08002fc0   0x08002fc0   0x00000060   Code   RO          465    i.lcdSetOrientation  ili9341.o
+    0x08003020   0x08003020   0x0000003c   Code   RO          469    i.lcdSetWindow      ili9341.o
+    0x0800305c   0x0800305c   0x00000042   Code   RO          470    i.lcdSquare         ili9341.o
+    0x0800309e   0x0800309e   0x00000002   PAD
+    0x080030a0   0x080030a0   0x00000300   Code   RO           13    i.main              main.o
+    0x080033a0   0x080033a0   0x0000002e   Code   RO          130    i.min_max_elems     cmsis_my.o
+    0x080033ce   0x080033ce   0x00000474   Data   RO          367    .constdata          font12.o
+    0x08003842   0x08003842   0x00008000   Data   RO          845    .constdata          arm_cortexM4lf_math.lib(arm_rfft_init_q15.o)
+    0x0800b842   0x0800b842   0x00000002   PAD
+    0x0800b844   0x0800b844   0x00000010   Data   RO          995    .constdata          arm_cortexM4lf_math.lib(arm_const_structs.o)
+    0x0800b854   0x0800b854   0x00000010   Data   RO          996    .constdata          arm_cortexM4lf_math.lib(arm_const_structs.o)
+    0x0800b864   0x0800b864   0x00000010   Data   RO          997    .constdata          arm_cortexM4lf_math.lib(arm_const_structs.o)
+    0x0800b874   0x0800b874   0x00000010   Data   RO          998    .constdata          arm_cortexM4lf_math.lib(arm_const_structs.o)
+    0x0800b884   0x0800b884   0x00000010   Data   RO          999    .constdata          arm_cortexM4lf_math.lib(arm_const_structs.o)
+    0x0800b894   0x0800b894   0x00000010   Data   RO         1000    .constdata          arm_cortexM4lf_math.lib(arm_const_structs.o)
+    0x0800b8a4   0x0800b8a4   0x00000010   Data   RO         1001    .constdata          arm_cortexM4lf_math.lib(arm_const_structs.o)
+    0x0800b8b4   0x0800b8b4   0x00000010   Data   RO         1002    .constdata          arm_cortexM4lf_math.lib(arm_const_structs.o)
+    0x0800b8c4   0x0800b8c4   0x00000010   Data   RO         1003    .constdata          arm_cortexM4lf_math.lib(arm_const_structs.o)
+    0x0800b8d4   0x0800b8d4   0x00000030   Data   RO         1128    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
+    0x0800b904   0x0800b904   0x00000060   Data   RO         1129    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
+    0x0800b964   0x0800b964   0x000000c0   Data   RO         1130    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
+    0x0800ba24   0x0800ba24   0x00000180   Data   RO         1131    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
+    0x0800bba4   0x0800bba4   0x00000300   Data   RO         1132    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
+    0x0800bea4   0x0800bea4   0x00000600   Data   RO         1133    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
+    0x0800c4a4   0x0800c4a4   0x00000c00   Data   RO         1134    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
+    0x0800d0a4   0x0800d0a4   0x00001800   Data   RO         1135    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
+    0x0800e8a4   0x0800e8a4   0x00003000   Data   RO         1136    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
+    0x080118a4   0x080118a4   0x00000018   Data   RO         1148    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
+    0x080118bc   0x080118bc   0x00000030   Data   RO         1149    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
+    0x080118ec   0x080118ec   0x00000070   Data   RO         1150    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
+    0x0801195c   0x0801195c   0x000000e0   Data   RO         1151    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
+    0x08011a3c   0x08011a3c   0x000001e0   Data   RO         1152    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
+    0x08011c1c   0x08011c1c   0x000003c0   Data   RO         1153    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
+    0x08011fdc   0x08011fdc   0x000007c0   Data   RO         1154    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
+    0x0801279c   0x0801279c   0x00000f80   Data   RO         1155    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
+    0x0801371c   0x0801371c   0x00001f80   Data   RO         1156    .constdata          arm_cortexM4lf_math.lib(arm_common_tables.o)
+    0x0801569c   0x0801569c   0x00000020   Data   RO         1291    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x080155cc, Size: 0x000022b0, Max: 0x0001c000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x080156bc, Size: 0x000022b0, Max: 0x0001c000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x080155cc   0x0000001c   Data   RW           20    .data               main.o
-    0x2000001c   0x080155e8   0x00000014   Data   RW          247    .data               interrupt.o
-    0x20000030   0x080155fc   0x00000008   Data   RW          368    .data               font12.o
-    0x20000038   0x08015604   0x00000020   Data   RW          475    .data               ili9341.o
+    0x20000000   0x080156bc   0x0000001c   Data   RW           20    .data               main.o
+    0x2000001c   0x080156d8   0x00000014   Data   RW          247    .data               interrupt.o
+    0x20000030   0x080156ec   0x00000008   Data   RW          368    .data               font12.o
+    0x20000038   0x080156f4   0x00000020   Data   RW          475    .data               ili9341.o
     0x20000058        -       0x00001478   Zero   RW           14    .bss                main.o
     0x200014d0        -       0x00000014   Zero   RW          243    .bss                interrupt.o
     0x200014e4        -       0x000000c8   Zero   RW          244    .bss                interrupt.o
     0x200015ac        -       0x00000800   Zero   RW          245    .bss                interrupt.o
     0x20001dac        -       0x00000100   Zero   RW          474    .bss                ili9341.o
-    0x20001eac   0x08015624   0x00000004   PAD
+    0x20001eac   0x08015714   0x00000004   PAD
     0x20001eb0        -       0x00000400   Zero   RW            1    STACK               startup_stm32f407xx.o
 
 
-    Execution Region RW_IRAM2 (Exec base: 0x2001c000, Load base: 0x08015624, Size: 0x00000000, Max: 0x00004000, ABSOLUTE)
+    Execution Region RW_IRAM2 (Exec base: 0x2001c000, Load base: 0x08015714, Size: 0x00000000, Max: 0x00004000, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
@@ -1221,14 +1221,14 @@ Image component sizes
       1890        174          0          0          0      39062   cmsis_my.o
          0          0       1140          8          0       1144   font12.o
          0          0          0          0          0        577   font16.o
-      1924         88          0         32        256      21997   ili9341.o
+      2004         88          0         32        256      22206   ili9341.o
        356         78          0         20       2268       5768   interrupt.o
-       608         78          0         28       5240     580055   main.o
+       768         80          0         28       5240     580171   main.o
         36          8        392          0       1024        880   startup_stm32f407xx.o
         16          4          0          0          0        513   system_stm32f4xx.o
 
     ----------------------------------------------------------------------
-      4836        430       1564         88       8792     649996   Object Totals
+      5076        432       1564         88       8792     650321   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          6          0          0          0          4          0   (incl. Padding)
 
@@ -1295,15 +1295,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     12630        586      74870         88       8792     692486   Grand Totals
-     12630        586      74870         88       8792     692486   ELF Image Totals
-     12630        586      74870         88          0          0   ROM Totals
+     12870        588      74870         88       8792     692811   Grand Totals
+     12870        588      74870         88       8792     692811   ELF Image Totals
+     12870        588      74870         88          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                87500 (  85.45kB)
+    Total RO  Size (Code + RO Data)                87740 (  85.68kB)
     Total RW  Size (RW Data + ZI Data)              8880 (   8.67kB)
-    Total ROM Size (Code + RO Data + RW Data)      87588 (  85.54kB)
+    Total ROM Size (Code + RO Data + RW Data)      87828 (  85.77kB)
 
 ==============================================================================
 

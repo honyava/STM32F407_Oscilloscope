@@ -395,7 +395,7 @@ void lcdPlot(uint16_t *buf_x, uint16_t *buf_y, uint16_t size, uint16_t color)
 //	uint16_t del_x = 0;
 	uint16_t del_y = 0;	
 	uint16_t max = 0;
-	
+	lcdHome();
 	for(uint16_t i = 0; i < size; ++i)
   {
 		if(buf_y[i] >= max)

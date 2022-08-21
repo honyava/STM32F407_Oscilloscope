@@ -1,3 +1,4 @@
+//#include "core_cm4.h"
 #include "main.h"
 #include <stdint.h>
 #include "arm_math.h"
@@ -82,28 +83,40 @@ int main(void)
     {
       if(status == ARM_MATH_SUCCESS)
       {
-        lcdDisplayOff();
-        lcdDisplayOn();
         arm_rfft_q15(&S,(q15_t*)BUFF_ADC3, fft_Dbuff); // fft
         arm_cmplx_mag_q15(fft_Dbuff, (q15_t*)BUFF_ADC3, BUFF_SIZE); //magnitude for fft
         arm_max_q15(fft_Dbuff, BUFF_SIZE, (q15_t*)&maxValue_fft, &maxIndex_fft); // search max value
         Amplitude = maxValue_fft*Convert_to_mV; // convert max value in mV
         frequance = maxIndex_fft*10000/BUFF_SIZE; // Fd/BUFF_SIZE = sample on 1 count
-        //lcdFillRect(0, 0, 320, 15, COLOR_BLACK); // Clear area lcd
+        min_max_elems((uint16_t*)fft_Dbuff, 840, &value_min, &value_max); // 280*3 = 840
+        y_scale = (value_max)/size_y;
+        for(uint16_t i = 0; i < 840; i++)
+        {
+          fft_Dbuff[i] = fft_Dbuff[i]/y_scale; //Make values from ADC3 for format of display
+          if(i % 3 == 0) 
+          {
+            buff_y[j] = ((fft_Dbuff[i] + fft_Dbuff[i+1]/y_scale + fft_Dbuff[i+2]/y_scale)/3)*100;
+            j++;
+          }  
+        }
+        lcdPlot(buff_x, buff_y, 280, COLOR_BLUE);
+        j = 0;   
+        lcdFillRect(0, 0, 320, 15, COLOR_BLACK); // Clear area lcd
         lcdSetCursor(215, 5);
-        lcdPrintf("%d", Amplitude); // Amplitude
-        lcdSetCursor(245, 5);
-        lcdPrintf("mV");
+        lcdPrintf("%d mV", Amplitude); // Amplitude
+       // lcdSetCursor(245, 5);
+       // lcdPrintf("mV");
         lcdSetCursor(75, 5);
-        lcdPrintf("%d",frequance); // frequance
-        lcdSetCursor(105, 5);
-        lcdPrintf("Hz");
+        lcdPrintf("%d Hz",frequance); // frequance
+        //lcdSetCursor(105, 5);
+        //lcdPrintf("Hz");
       }
       flag_DMA_ADC3 = 0;
       flag_lcd_update = 0;
     }
     else if(flag_DMA_ADC3 == 1 && flag_lcd_update == 1 && flag_button == 0)
     {
+      lcdFillRect(0, 0, 320, 15, COLOR_BLACK); // Clear area lcd
       //lcdFillRect(0, 0, 320, 240, COLOR_BLACK); // Clear area lcd
       //lcdGrid(20, 20, COLOR_WHITE);
       min_max_elems(BUFF_ADC3, 840, &value_min, &value_max); // 280*3 = 840
