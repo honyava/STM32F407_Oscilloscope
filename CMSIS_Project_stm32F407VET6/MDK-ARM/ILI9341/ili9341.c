@@ -8,7 +8,7 @@
 #define side_y  25U
 
 #define offset_x  20U // for start coordinate grid
-#define offset_y  120U
+#define offset_y  120
 enum {
   MemoryAccessControlNormalOrder,
   MemoryAccessControlReverseOrder
@@ -389,7 +389,7 @@ void lcdDrawLine(int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint16_t color)
 	}
 }
 
-void lcdPlot(uint16_t *buf_x, uint16_t *buf_y, uint16_t size, uint16_t color)
+void lcdPlot_center(uint16_t *buf_x, uint16_t *buf_y, uint16_t size, uint16_t color)
 {
 	uint16_t count_plot = 0;
 //	uint16_t del_x = 0;
@@ -407,13 +407,36 @@ void lcdPlot(uint16_t *buf_x, uint16_t *buf_y, uint16_t size, uint16_t color)
 	while(count_plot < size)
 	{
 		//buf_y[count_plot] = (buf_y[count_plot]);
-		lcdDrawLine(buf_x[count_plot] + offset_x, (buf_y[count_plot])/del_y + offset_y, \
-		buf_x[count_plot+1] + offset_x, (buf_y[count_plot+1])/del_y + offset_y, color);
+		lcdDrawLine(buf_x[count_plot] + offset_x, -(buf_y[count_plot])/del_y + offset_y, \
+		buf_x[count_plot+1] + offset_x, -(buf_y[count_plot+1])/del_y + offset_y, color);
 		if (count_plot == 274) return;
 		count_plot++;
 	}
-  
+}
 
+void lcdPlot_left(uint16_t *buf_x, uint16_t *buf_y, uint16_t size, uint16_t color)
+{
+	uint16_t count_plot = 0;
+//	uint16_t del_x = 0;
+	uint16_t del_y = 0;	
+	uint16_t max = 0;
+	lcdHome();
+	for(uint16_t i = 0; i < size; ++i)
+  {
+		if(buf_y[i] >= max)
+    {
+			max = buf_y[i];
+    }
+  }
+	del_y = 1 + max/200;
+	while(count_plot < size)
+	{
+		//buf_y[count_plot] = (buf_y[count_plot]);
+		lcdDrawLine(buf_x[count_plot] + offset_x, -(buf_y[count_plot])/del_y + 220, \
+		buf_x[count_plot+1] + offset_x, -(buf_y[count_plot+1])/del_y + 220, color);
+		if (count_plot == 274) return;
+		count_plot++;
+	}
 }
 
 void lcdSquare(uint16_t x, uint16_t y, uint16_t color)
@@ -449,6 +472,56 @@ void lcdGrid(uint16_t x, uint16_t y, uint16_t color)
 
   lcdDrawLine(55, 230, 46, 233, color);
   lcdDrawLine(55, 230, 46, 227, color);
+  
+    // Make arrow for graphic
+  lcdDrawVLine(10, 195, 220, color);
+  lcdDrawHLine(20, 7,220, color);
+	lcdDrawHLine(20, 7,195, color);
+  
+  lcdDrawLine(10, 195, 13, 205, color);
+  lcdDrawLine(10, 220, 13, 210, color);
+
+  lcdDrawLine(10, 195, 7, 205, color);
+  lcdDrawLine(10, 220, 7, 210, color);
+}
+
+void lcdGrid_fft(uint16_t x, uint16_t y, uint16_t color)
+{
+	uint8_t count = 0;
+	for (uint8_t i = 0; i < 8; i++)
+	{
+		for (uint8_t j = 0; j < 8; j++)
+		{
+			lcdSquare(side_x*i + x, side_y*j + y, color);
+			if (count < 56)
+			{
+				lcdDrawVLine(x + 5*count,218, 222, color);
+				if (count < 40) lcdDrawHLine(18, 22, 20 + 5*count, color);
+			}
+			count++;
+		}
+	}
+  // Make arrow for graphic
+  lcdDrawHLine(20, 55, 230, color);
+  lcdDrawVLine(20, 220,233, color);
+	lcdDrawVLine(55, 220,233, color);
+  
+  lcdDrawLine(20, 230, 29, 233, color);
+  lcdDrawLine(20, 230, 29, 227, color);
+
+  lcdDrawLine(55, 230, 46, 233, color);
+  lcdDrawLine(55, 230, 46, 227, color);
+  
+    // Make arrow for graphic
+  lcdDrawVLine(10, 195, 220, color);
+  lcdDrawHLine(20, 7,220, color);
+	lcdDrawHLine(20, 7,195, color);
+  
+  lcdDrawLine(10, 195, 13, 205, color);
+  lcdDrawLine(10, 220, 13, 210, color);
+
+  lcdDrawLine(10, 195, 7, 205, color);
+  lcdDrawLine(10, 220, 7, 210, color);
 }
 
 

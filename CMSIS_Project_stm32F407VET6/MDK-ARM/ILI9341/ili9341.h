@@ -102,9 +102,11 @@ void					lcdDisplayOn(void);
 void					lcdTearingOff(void);
 void					lcdTearingOn(bool m);
 //////////////////////////////////////////////////////////////////////////////////////////
-void          lcdPlot(uint16_t *buf_x, uint16_t *buf_y, uint16_t size, uint16_t color);
+void          lcdPlot_center(uint16_t *buf_x, uint16_t *buf_y, uint16_t size, uint16_t color);
+void          lcdPlot_left(uint16_t *buf_x, uint16_t *buf_y, uint16_t size, uint16_t color);
 void          lcdSquare(uint16_t x, uint16_t y, uint16_t color);
 void 					lcdGrid(uint16_t x, uint16_t y, uint16_t color);
+void          lcdGrid_fft(uint16_t x, uint16_t y, uint16_t color);
 //////////////////////////////////////////////////////////////////////////////////////////
 uint16_t          		lcdGetWidth(void);
 uint16_t          		lcdGetHeight(void);
