@@ -38,9 +38,9 @@ uint16_t k;
 uint16_t temp1 = 1;
 uint8_t status;
 uint8_t flag_lcd_update_main = 0;
-uint16_t maxValue_fft = 0;
+uint32_t volatile maxValue_fft = 0;
 uint32_t maxIndex_fft = 0;
-uint16_t value_min, value_max;
+uint16_t value_min, value_max = 0;
 uint32_t t0 = 0;
 uint32_t temp_fft = 0;
 
@@ -104,8 +104,8 @@ int main(void)
         Amplitude = maxValue_fft*Convert_to_mV; // convert max value in mV
         frequance = maxIndex_fft*10000/BUFF_SIZE; // Fd/BUFF_SIZE = sample on 1 count
         //min_max_elems((uint16_t*)fft_Dbuff, 840, &value_min, &value_max); // 280*3 = 840
-        y_scale = Amplitude/size_y;
-        for(uint32_t i = 0; i < 8*280; i++)
+        y_scale = maxValue_fft/size_y;
+        for(uint32_t i = 0; i < BUFF_SIZE*2; i++)
         {
           if(i % 8 == 0) 
           {
@@ -115,9 +115,10 @@ int main(void)
 //              if (temp1 == 1) temp1 = 0;
 //            }
 //            temp1 += 3;
-            
-            buff_y[j] = (uint16_t)temp_fft; //  / / /  / // / / / // /  / / // / / / / / / / / 
-            j++;
+            buff_y[j] = 0;
+            for(uint8_t k = 0; k < 8; k++) buff_y[j] += (uint16_t)((fft_Dbuff[i+k]));
+            if (j <= 280) j++;
+            else break;
           }  
         }
         lcdFillRect(0, 0, 320, 15, COLOR_BLACK); // Clear area lcd
@@ -152,7 +153,7 @@ int main(void)
       //lcdFillRect(0, 0, 320, 240, COLOR_BLACK); // Clear area lcd
       lcdGrid(20, 20, COLOR_WHITE);
       min_max_elems(BUFF_ADC3, 840, &value_min, &value_max); // 280*3 = 840
-      y_scale = (value_max)/size_y;
+      y_scale = value_max/size_y;
       U_del = value_max/4;
       lcdSetCursor(165, 225);
       lcdPrintf("U_del=%d mV ",U_del);
@@ -163,7 +164,8 @@ int main(void)
         BUFF_ADC3[i] = BUFF_ADC3[i]/y_scale; //Make values from ADC3 for format of display
         if(i % 3 == 0) 
         {
-          buff_y[j] = (BUFF_ADC3[i] + BUFF_ADC3[i+1] + BUFF_ADC3[i+2])/3 ;
+          buff_y[j] = 0; 
+         for(uint8_t k = 0; k < 3; k++) buff_y[j] += BUFF_ADC3[i+k]/3 ;
           j++;
         }  
       }
